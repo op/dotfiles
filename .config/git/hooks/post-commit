@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# snap a webcam image each commit
+exec "`dirname $0`/capture-webcam" $@
+
+# launch the local git hook
+root=`git rev-parse --show-toplevel`
+hook=`basename $0`
+if [ -x "$root/.git/hooks/$hook" ]; then
+	exec "$root/.git/hooks/$hook" $@
+fi

@@ -1,0 +1,88 @@
+[user]
+	name = Örjan Fors
+	email = o@42mm.org
+
+[includeIf "gitdir:~/src/gitlab.com/29k/"]
+	path = ~/.config/git/config.29k
+
+[alias]
+	br = branch
+	ci = commit -v
+	co = checkout
+	st = status
+	stat = status
+
+	ds = diff --staged --stat -p -C
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	plog = log --patch-with-stat --cc
+
+	guilt = "!git --no-pager shortlog -sne $@"
+	full = "!f(){ ( elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \\| ); git pull; }; f"
+[core]
+	excludesfile = ~/.config/git/ignore
+	hooksPath = ~/.config/git/hooks
+	pager = delta --line-numbers
+
+[pager]
+	color = true
+	plog = less -n +\"/^commit [0-9a-f\\]+\"
+
+[init]
+	defaultBranch = main
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+
+[diff]
+	colorMoved = default
+	color = auto
+	rename = copy
+	tool = vimdiff
+
+[push]
+	default = tracking
+
+[branch "main"]
+	rebase = true
+[branch "master"]
+	rebase = true
+
+[merge]
+	conflictstyle = diff3
+	#tool = vimdiff
+	#tool = meld
+[mergetool]
+	#prompt = true
+
+[blame]
+	#date = relative
+	date = local
+	#date = rfc
+	#date = default
+	#date = iso
+
+[tig]
+	show-rev-graph = yes
+	show-refs = yes
+	line-graphics = yes
+[tig "color"]
+	cursor = black green dim
+	author = green default normal
+	main-revgraph = yellow default normal
+	pp-commit = magenta default bold
+	diff-chunk = magenta default bold
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true  # use n and N to move between diff sections

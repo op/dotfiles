@@ -1,0 +1,11 @@
+tags
+tags.lock
+tags.temp
+
+# for gutentags vim plugin
+.notags
+
+# gradle plugin for zsh
+.gradletasknamecache
+
+.envrc
