@@ -474,12 +474,12 @@ bindsym $mod+apostrophe mode $mode_switch_window
 #
 set $mode_notification "Notifications: (a) action (c) context (w) close (h) history pop (d) do not disturb (s) start"
 mode $mode_notification {
-    bindsym a mode default, exec dunstctl action
-    bindsym c mode default, exec dunstctl context
-    bindsym w mode default, exec dunstctl close
-    bindsym h mode default, exec dunstctl history-pop
-    bindsym d mode default, exec dunstctl set-paused true
-    bindsym s mode default, exec dunstctl set-paused false
+    bindsym a mode default, exec makoctl action
+    bindsym c mode default, exec makoctl menu dmenu -p 'Select Action: '
+    bindsym w mode default, exec makoctl dismiss
+    bindsym h mode default, exec makoctl restore
+    bindsym d mode default, exec makoctl set-mode do-not-disturb
+    bindsym s mode default, exec makoctl set-mode default
 
     bindsym Return mode default
     bindsym Escape mode default
