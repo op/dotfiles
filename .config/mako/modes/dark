@@ -1,0 +1,19 @@
+# rosé pine
+background-color=#191724
+text-color=#e0def4
+progress-color=over #ebbcba
+border-radius=8
+
+[urgency=low]
+border-color=#9ccfd8
+
+[urgency=normal]
+border-color=#f6c177
+
+[urgency=critical]
+border-color=#eb6f92
+
+[mode=do-not-disturb]
+invisible=1
+
+# vim: ft=cfg

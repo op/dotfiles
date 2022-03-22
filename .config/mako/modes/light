@@ -1,0 +1,19 @@
+# rosé pine dawn
+background-color=#fffaf3
+text-color=#575279
+progress-color=over #d7827e
+border-radius=8
+
+[urgency=low]
+border-color=#56949f
+
+[urgency=normal]
+border-color=#ea9d34
+
+[urgency=critical]
+border-color=#b4637a
+
+[mode=do-not-disturb]
+invisible=1
+
+# vim: ft=cfg

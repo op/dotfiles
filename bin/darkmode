@@ -5,11 +5,14 @@
 # TODO nvim (reads ~/.darkmode already, need to trigger reload)
 # TODO dunst
 
-local sway_theme_path_dark='~/.config/sway/modes/dark.conf'
-local sway_theme_path_light='~/.config/sway/modes/light.conf'
+local sway_theme_path_dark=~/.config/sway/modes/dark.conf
+local sway_theme_path_light=~/.config/sway/modes/light.conf
 
-local alacritty_theme_path_dark='~/.config/alacritty/modes/dark.yml'
-local alacritty_theme_path_light='~/.config/alacritty/modes/light.yml'
+local alacritty_theme_path_dark=~/.config/alacritty/modes/dark.yml
+local alacritty_theme_path_light=~/.config/alacritty/modes/light.yml
+
+local mako_theme_path_dark=~/.config/mako/modes/dark
+local mako_theme_path_light=~/.config/mako/modes/light
 
 expand_parameter() {
     local parameter="$1_$background"
@@ -27,6 +30,7 @@ fi
 
 local sway_theme_path=$(expand_parameter sway_theme_path);
 local alacritty_theme_path=$(expand_parameter alacritty_theme_path);
+local mako_theme_path=$(expand_parameter mako_theme_path);
 
 # write cache files
 mkdir -p ~/.cache/sway
@@ -42,6 +46,11 @@ import:
  - $alacritty_theme_path
 EOF
 
+mkdir -p ~/.cache/mako
+cp $mako_theme_path ~/.cache/mako/config
+[ -e ~/.config/mako/config ] || ln -s ~/.cache/mako/config ~/.config/mako/config
+
 # reload applications
 swaymsg reload
 touch ~/.config/alacritty/alacritty.yml
+makoctl reload
