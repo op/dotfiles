@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+# TODO gtk3
+# TODO qt?
+# TODO nvim (reads ~/.darkmode already, need to trigger reload)
+
+local sway_theme_path_dark='~/.config/sway/modes/dark.conf'
+local sway_theme_path_light='~/.config/sway/modes/light.conf'
+
+local alacritty_theme_path_dark='~/.config/alacritty/modes/dark.yml'
+local alacritty_theme_path_light='~/.config/alacritty/modes/light.yml'
+
+expand_parameter() {
+    local parameter="$1_$background"
+    print ${(P)parameter};
+}
+
+local background
+if [[ -e ~/.darkmode ]]; then
+    background=light
+    rm ~/.darkmode
+else
+    background=dark
+    touch ~/.darkmode
+fi
+
+# declare parameter="sway_theme_path_${background}";
+local sway_theme_path=$(expand_parameter sway_theme_path);
+local alacritty_theme_path=$(expand_parameter alacritty_theme_path);
+
+# write cache files
+mkdir -p ~/.cache/sway
+print "include $sway_theme_path" > ~/.cache/sway/darkmode.conf
+
+mkdir -p ~/.cache/alacritty
+print "import:\n - $alacritty_theme_path" > ~/.cache/alacritty/darkmode.yml
+
+# reload applications
+swaymsg reload
+touch ~/.config/alacritty/alacritty.yml
