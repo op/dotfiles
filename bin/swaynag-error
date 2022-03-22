@@ -1,0 +1,12 @@
+#!/bin/sh
+
+swaynag \
+  --type warning \
+  --background=#26233a \
+  --text=#e0def4 \
+  --border=#191724 \
+  --border-bottom=#eb6f92 \
+  --button-background=#1f1d2e \
+  --button-text=#908caa \
+  --details-background=#26233a \
+  "$@"

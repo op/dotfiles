@@ -1,0 +1,580 @@
+#########################################################################
+###            ___           ___           ___           ___          ###
+###           /\  \         /\__\         /\  \         |\__\         ###
+###          /::\  \       /:/ _/_       /::\  \        |:|  |        ###
+###         /:/\ \  \     /:/ /\__\     /:/\:\  \       |:|  |        ###
+###        _\:\~\ \  \   /:/ /:/ _/_   /::\~\:\  \      |:|__|__      ###
+###       /\ \:\ \ \__\ /:/_/:/ /\__\ /:/\:\ \:\__\     /::::\__\     ###
+###       \:\ \:\ \/__/ \:\/:/ /:/  / \/__\:\/:/  /    /:/~~/~        ###
+###        \:\ \:\__\    \::/_/:/  /       \::/  /    /:/  /          ###
+###         \:\/:/  /     \:\/:/  /        /:/  /     \/__/           ###
+###          \::/  /       \::/  /        /:/  /                      ###
+###           \/__/         \/__/         \/__/                       ###
+###                                                                   ###
+#########################################################################
+### vim: filetype=swayconfig                                          ###
+#########################################################################
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left  h
+set $down  j
+set $up    k
+set $right l
+# Your preferred terminal emulator
+set $term alacritty
+set $screensaver ~/bin/lock-screen
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu ~/bin/run-menu | xargs swaymsg exec --
+
+set $monitor1 eDP-1
+set $monitor2 HDMI-A-1
+set $monitor3 HDMI-A-2
+
+include /etc/sway/config-vars.d/*
+
+### General configuration
+#
+# Pure Wayland mode
+# xwayland disable
+
+### Output configuration
+
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+output $monitor1 pos 0    0
+output $monitor2 pos 1920 0
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+exec swayidle -w \
+          timeout 300 '$screensaver' \
+          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          before-sleep '$screensaver'
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+input "type:keyboard" {
+    xkb_layout us,se
+    xkb_variant altgr-intl,
+    xkb_options grp:alt_shift_toggle
+
+    repeat_delay 250
+    repeat_rate 80
+}
+
+input "type:pointer" {
+    accel_profile adaptive
+    pointer_accel 1
+    scroll_factor 1.5
+}
+
+input "type:touchpad" {
+    accel_profile adaptive
+    pointer_accel 1
+    scroll_factor 1.5
+    click_method clickfinger
+}
+
+seat "*" {
+    hide_cursor when-typing enable
+    hide_cursor 10000
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return       exec $term
+    bindsym $mod+Ctrl+Shift+l exec $screensaver
+
+    # Kill focused window
+    bindsym $mod+Shift+c kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+    bindsym $mod+p exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+q reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+q exec swaynag-warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left  focus left
+    bindsym $mod+Down  focus down
+    bindsym $mod+Up    focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left  move left
+    bindsym $mod+Shift+$down  move down
+    bindsym $mod+Shift+$up    move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left  move left
+    bindsym $mod+Shift+Down  move down
+    bindsym $mod+Shift+Up    move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number  1:一
+    bindsym $mod+2 workspace number  2:二
+    bindsym $mod+3 workspace number  3:三
+    bindsym $mod+4 workspace number  4:四
+    bindsym $mod+5 workspace number  5:五
+    bindsym $mod+6 workspace number  6:六
+    bindsym $mod+7 workspace number  7:七
+    bindsym $mod+8 workspace number  8:八
+    bindsym $mod+9 workspace number  9:九
+    bindsym $mod+0 workspace number 10:十
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number  1
+    bindsym $mod+Shift+2 move container to workspace number  2
+    bindsym $mod+Shift+3 move container to workspace number  3
+    bindsym $mod+Shift+4 move container to workspace number  4
+    bindsym $mod+Shift+5 move container to workspace number  5
+    bindsym $mod+Shift+6 move container to workspace number  6
+    bindsym $mod+Shift+7 move container to workspace number  7
+    bindsym $mod+Shift+8 move container to workspace number  8
+    bindsym $mod+Shift+9 move container to workspace number  9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+    # Switch to previous workspace
+    bindsym $mod+o workspace back_and_forth
+    bindsym $mod+Shift+o move container to workspace back_and_forth
+#
+# Layout stuff:
+#
+set $mode_layout Layout (l) splith (v) splitv (s) stacking (w) tabbed (e) split (f) fullscreen (t) toggle (b) border
+mode "$mode_layout" {
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym l mode default, splith
+    bindsym v mode default, splitv
+
+    # Switch the current container between different layout styles
+    bindsym s mode default, layout stacking
+    bindsym w mode default, layout tabbed
+    bindsym e mode default, layout toggle split
+    #bindsym $mod+Shift+t layout toggle splitv splith
+    #bindsym $mod+Shift+f layout toggle tabbed stacking
+
+
+    # Make the current focus fullscreen
+    bindsym f mode default, fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym t mode default, floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym space mode default, focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym a mode default, focus parent
+
+    # Toggle border style
+    bindsym b mode default, border toggle
+
+    # Return to default mode
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+b mode "$mode_layout"
+bindsym $mod+v mode "$mode_layout"
+
+    #bindsym $mod+Shift+t layout toggle splitv splith
+    #bindsym $mod+Shift+f layout toggle tabbed stacking
+
+    # Make the current focus fullscreen
+    bindsym $mod+Shift+f fullscreen toggle
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+t floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    #bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+#
+# Monitor
+#
+set $mode_focus Focus (w) monitor 1 (e) monitor 2 (r) monitor 3 ($left,$down,$up,$right) navigate output (p) parent (c) child
+mode "$mode_focus" {
+    bindsym 1 mode default, focus output $monitor1
+    bindsym 2 mode default, focus output $monitor2
+    bindsym 3 mode default, focus output $monitor3
+    bindsym w mode default, focus output $monitor1
+    bindsym e mode default, focus output $monitor2
+    bindsym r mode default, focus output $monitor3
+
+    # Switch focus to next output in given direction
+    bindsym $left  mode default, focus output left
+    bindsym $down  mode default, focus output down
+    bindsym $up    mode default, focus output up
+    bindsym $right mode default, focus output right
+
+    # Swap focus between the tiling area and the floating area
+    bindsym space mode default, focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym a mode default, focus parent
+    bindsym p mode default, focus parent
+    bindsym c mode default, focus child
+
+    # Toggle border style
+    bindsym b mode default, border toggle
+
+    # Return to default mode
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+f mode "$mode_focus"
+
+    # Switch focus to screen 1,2,3
+    bindsym $mod+w exec swaymsg focus output $monitor1
+    bindsym $mod+e exec swaymsg focus output $monitor2
+    bindsym $mod+r exec swaymsg focus output $monitor3
+
+    # Move focused workspace to monitor 1,2,3
+    bindsym $mod+Shift+w move workspace to output $monitor1
+    bindsym $mod+Shift+e move workspace to output $monitor2
+    #bindsym $mod+Shift+r move workspace to output $monitor3
+
+    # Move focused workspace with arrows
+    bindsym $mod+Ctrl+$left  move workspace to output left
+    bindsym $mod+Ctrl+$right move workspace to output right
+    bindsym $mod+Ctrl+Left   move workspace to output left
+    bindsym $mod+Ctrl+Right  move workspace to output right
+
+#
+# Keybindings
+#
+    # Control media using del, page up and down
+    bindsym --locked $mod+Ctrl+Delete exec playerctl play-pause
+    bindsym --locked $mod+Ctrl+Prior  exec playerctl next
+    bindsym --locked $mod+Ctrl+Next   exec playerctl previous
+
+    # Multimedia keys
+    bindsym --locked XF86AudioPlay  exec playerctl play
+    bindsym --locked XF86AudioPause exec playerctl pause
+    bindsym --locked XF86AudioNext  exec playerctl next
+    bindsym --locked XF86AudioPrev  exec playerctl previous
+
+    bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1.5%
+    bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1.5%
+    bindsym --locked XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+    bindsym --locked XF86AudioMicMute     exec --no-startup-id pactl set-sink-nput-mute 0 toggle
+
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
+
+#
+# Scratchpad:
+#
+set $mode_scratch Scratchpad (j) journal (k) passwordsafe (a) scrcpy (i) signal (b) bitwarden
+mode "$mode_scratch" {
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym minus scratchpad show
+
+    # Active a specific scratchpad. Automatically leave mode.
+    bindsym j mode default, exec swaymsg [app_id="journal"] scratchpad show || exec $term --class journal -e nvim ~/var/dropbox/doc/journal*.md
+    bindsym k mode default, exec swaymsg [app_id="org.gnome.PasswordSafe"] scratchpad show || exec gnome-passwordsafe
+    # bindsym k mode default, exec swaymsg [app_id="keepassx"] scratchpad show || exec keepassx
+    bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
+    bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop
+    bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
+
+    # Return to default mode
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+s mode "$mode_scratch"
+
+
+#
+# Resizing containers:
+#
+set $mode_resize Resize: ($left, $up) shrink ($down, $right) grow
+mode "$mode_resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left  resize shrink width 10px
+    bindsym $down  resize grow height 10px
+    bindsym $up    resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left  resize shrink width 10px
+    bindsym Down  resize grow height 10px
+    bindsym Up    resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+Shift+r mode "$mode_resize"
+
+#
+# Gaps:
+#
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: (+|-|0) current, (shift + (+|-|0)) global, (i) inner
+set $mode_gaps_inner Inner Gaps: (+|-|0) current, (shift + (+|-|0)) global, (o) outer
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o mode "$mode_gaps_outer"
+        bindsym i mode "$mode_gaps_inner"
+
+        bindsym Return mode default
+        bindsym Escape mode default
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym o mode "$mode_gaps_outer"
+
+        bindsym Return mode default
+        bindsym Escape mode default
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym i mode "$mode_gaps_inner"
+
+        bindsym Return mode default
+        bindsym Escape mode default
+}
+
+#
+# Navigation with marks
+#
+set $mode_set_switch_window "Set mark: {0-9} mark () jump to mark"
+mode $mode_set_switch_window {
+    bindsym 1 mode default, mark 1
+    bindsym 2 mode default, mark 2
+    bindsym 3 mode default, mark 3
+    bindsym 4 mode default, mark 4
+    bindsym 5 mode default, mark 5
+    bindsym 6 mode default, mark 6
+    bindsym 7 mode default, mark 7
+    bindsym 8 mode default, mark 8
+    bindsym 9 mode default, mark 9
+    bindsym 0 mode default, mark 0
+
+    bindsym apostrophe mode $mode_switch_window
+
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+m mode $mode_set_switch_window
+
+set $mode_switch_window "Jump to mark: {0-9} focus, (m) mark window"
+mode $mode_switch_window {
+    bindsym 1 [con_mark="1"] mode default, focus
+    bindsym 2 [con_mark="2"] mode default, focus
+    bindsym 3 [con_mark="3"] mode default, focus
+    bindsym 4 [con_mark="4"] mode default, focus
+    bindsym 5 [con_mark="5"] mode default, focus
+    bindsym 6 [con_mark="6"] mode default, focus
+    bindsym 7 [con_mark="7"] mode default, focus
+    bindsym 8 [con_mark="8"] mode default, focus
+    bindsym 9 [con_mark="9"] mode default, focus
+    bindsym 0 [con_mark="0"] mode default, focus
+
+    bindsym m mode $mode_set_switch_window
+
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+apostrophe mode $mode_switch_window
+
+#
+# Notifications
+#
+set $mode_notification "Notifications: (a) action (c) context (w) close (h) history pop (d) do not disturb (s) start"
+mode $mode_notification {
+    bindsym a mode default, exec dunstctl action
+    bindsym c mode default, exec dunstctl context
+    bindsym w mode default, exec dunstctl close
+    bindsym h mode default, exec dunstctl history-pop
+    bindsym d mode default, exec dunstctl set-paused true
+    bindsym s mode default, exec dunstctl set-paused false
+
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+n mode $mode_notification
+
+#
+# Interface:
+#
+default_border pixel 1
+default_floating_border pixel 1
+
+focus_follows_mouse no
+focus_wrapping off
+
+force_display_urgency_hint 2500
+
+hide_edge_borders none
+
+smart_gaps on
+smart_borders on
+
+#
+# Windows:
+#
+    # various launched applications
+    for_window [class="Mplayer"]          floating enable
+    for_window [class="Skype"]            floating enable
+    for_window [class="zoom"]             floating enable
+    for_window [class="Cssh"]             floating enable
+    for_window [class="emulator-arm"]     floating enable
+    for_window [class="emulator64-arm"]   floating enable
+    for_window [class="jetbrains-studio"] floating enable
+    for_window [class="vncviewer"]        floating enable
+    for_window [class="gvncviewer"]       floating enable
+    for_window [class="Dpkg-reconfigure"] floating enable
+    for_window [class="Steam"]            floating enable
+    for_window [class="vlc"]              floating enable
+
+    for_window [app_id="firefox" title="Sharing Indicator"] floating enable
+    for_window [app_id="firefox" title="Sharing Indicator"] move position 50 ppt 0 px
+    for_window [app_id="firefox" title="Sharing Indicator"] sticky enable
+    for_window [app_id="firefox" title="Sharing Indicator"] no focus
+    for_window [app_id="firefox" title="Sharing Indicator"] border none
+    for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
+
+    for_window [app_id="gnome-control-center"] floating enable, border pixel
+    for_window [app_id="ssh-askpass"]          floating enable, border pixel
+
+    # scratchpads
+    for_window [app_id="journal"]                floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
+    for_window [app_id="keepassx"]               floating enable, move scratchpad, scratchpad show
+    for_window [class="keepassx"]                floating enable, move scratchpad, scratchpad show
+    for_window [app_id="org.gnome.PasswordSafe"] floating enable, move scratchpad, scratchpad show
+    for_window [class="Bitwarden"]               floating enable, move scratchpad, scratchpad show
+    for_window [class="Signal"]                  floating enable, move scratchpad, scratchpad show
+    for_window [class="scrcpy"]                  floating enable, move scratchpad, scratchpad show
+
+#
+# Start software
+#
+
+# NetworkManager appletfor wifi.
+exec --no-startup-id nm-applet
+
+# Execute portal to enable screensharing in wlroots through xdg-desktop-portal
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+# bar {
+#     position top
+
+#     font pango:Noto Mono 12
+
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %H:%M'; do sleep 60; done
+
+#     colors {
+#         statusline #707880
+#         background #0d0f11
+
+#         inactive_workspace #282a2e #1d1f21 #707880
+#         focused_workspace #282a2e #1d1f21 #b5bd68
+#         urgent_workspace #282a2e #1d1f21 #c5c8c6
+
+#         active_workspace #282a2e #282a2e #c5c8c6
+#     }
+# }
+
+# darkmode creates this file based on darkmode
+include ~/.cache/sway/darkmode.conf
+
+include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*.conf
