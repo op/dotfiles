@@ -16,4 +16,7 @@ border-color=#b4637a
 [mode=do-not-disturb]
 invisible=1
 
+[app-name=Spotify]
+default-timeout=5000
+
 # vim: ft=cfg
