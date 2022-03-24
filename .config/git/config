@@ -18,14 +18,11 @@
 
 	guilt = "!git --no-pager shortlog -sne $@"
 	full = "!f(){ ( elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \\| ); git pull; }; f"
+
 [core]
 	excludesfile = ~/.config/git/ignore
 	hooksPath = ~/.config/git/hooks
 	pager = delta
-
-[pager]
-	color = true
-	plog = less -n +\"/^commit [0-9a-f\\]+\"
 
 [init]
 	defaultBranch = main
@@ -64,17 +61,6 @@
 	#date = default
 	#date = iso
 
-[tig]
-	show-rev-graph = yes
-	show-refs = yes
-	line-graphics = yes
-[tig "color"]
-	cursor = black green dim
-	author = green default normal
-	main-revgraph = yellow default normal
-	pp-commit = magenta default bold
-	diff-chunk = magenta default bold
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -82,7 +68,19 @@
 	required = true
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --features=interactive
 
 [delta]
+	features = decorations
+	line-numbers = true
+	zero-style = dim syntax
+	syntax-theme = Monokai Extended
 	navigate = true  # use n and N to move between diff sections
+
+[delta "interactive"]
+	keep-plus-minus-markers = false
+
+[delta "decorations"]
+	commit-style = raw
+	file-style = omit
+	hunk-header-style = file line-number syntax
