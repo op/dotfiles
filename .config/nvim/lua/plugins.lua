@@ -4,7 +4,9 @@ packer.startup(function(use)
 	-- https://github.com/wbthomason/packer.nvim
 	use('wbthomason/packer.nvim')
 
-	-- Indentation and formatting
+	---
+	--- Indentation and formatting
+	---
 	use('tpope/vim-sleuth')              -- detects indentation
 	use('editorconfig/editorconfig-vim') -- read .editorconfig
 
@@ -14,17 +16,6 @@ packer.startup(function(use)
 		config = function()
 			vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', { silent = true })
 			vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', { silent = true })
-		end
-	})
-
-	-- Colorscheme
-	use({
-		'rose-pine/neovim',
-		as = 'rose-pine',
-		tag = 'v1.*',
-		config = function()
-			require('rose-pine').setup({ dark_variant = 'main' })
-			vim.cmd('colorscheme rose-pine')
 		end
 	})
 
@@ -69,6 +60,11 @@ packer.startup(function(use)
 		end,
 	})
 
+	--
+	-- File handling
+	--
+	use('dietsche/vim-lastplace') -- restore cursor position
+
 	-- Commenting
 	use({
 		'b3nj5m1n/kommentary',
@@ -84,7 +80,9 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Git integration for buffers
+	--
+	-- Version control system related
+	--
 	use({
 		'lewis6991/gitsigns.nvim',
 		requires = { 'nvim-lua/plenary.nvim' },
@@ -93,7 +91,22 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Statusline
+	---
+	--- Color scheme
+	---
+	use({
+		'rose-pine/neovim',
+		as = 'rose-pine',
+		tag = 'v1.*',
+		config = function()
+			require('rose-pine').setup({ dark_variant = 'main' })
+			vim.cmd('colorscheme rose-pine')
+		end
+	})
+
+	---
+	--- Statusbar
+	---
 	use({
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
