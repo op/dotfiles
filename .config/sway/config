@@ -88,8 +88,8 @@ exec swayidle -w \
 # Read `man 5 sway-input` for more information about this section.
 
 input "type:keyboard" {
-    xkb_layout us,se
-    xkb_variant altgr-intl,
+    xkb_layout us
+    xkb_variant altgr-intl
     xkb_options grp:alt_shift_toggle
 
     repeat_delay 250
