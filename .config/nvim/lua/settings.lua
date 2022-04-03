@@ -4,8 +4,8 @@
 vim.o.clipboard = 'unnamedplus' -- Use clipboard for ALL operations
 vim.o.mouse = 'a'               -- Allow mouse to be used in all modes
 vim.o.selectmode = 'mouse,key'
--- vim.o.nowrap = true          -- Don't display long lines as wrapped
--- vim.opt.nofixendofline = true     -- Stop adding endlines
+vim.cmd('set nowrap')           -- Don't display long lines as wrapped
+vim.cmd('set nofixendofline')   -- Stop adding endlines
 vim.o.showmode = false          -- Status bar show's the mode already
 vim.o.scrolloff = 2             -- Show lines above and below cursor
 vim.o.sidescrolloff = 2         -- Show columns left and right of cursor
@@ -17,7 +17,6 @@ vim.o.ttimeoutlen = 50
 --- File handling
 ---
 vim.o.hidden = true
-vim.o.autochdir = true
 vim.o.autowrite = true -- Save before :next, :make etc
 vim.o.autoread = true  -- Reload externally changed buffer w/o local changes
 vim.o.backup = true
@@ -79,7 +78,7 @@ else
 end
 
 vim.o.listchars = 'eol:↵,tab:→ ,trail:·'
--- vim.o.colorcolumn = 80
+vim.cmd('set colorcolumn=80')
 vim.o.termguicolors = true
 -- vim.wo.cursorline = true
 -- vim.wo.number = true
