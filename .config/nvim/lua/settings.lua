@@ -41,6 +41,8 @@ vim.o.expandtab = true
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2              -- Autoindent step
 vim.o.tabstop = 2                 -- Show tabs as 2 spaces
+vim.o.linebreak = true            -- Soft wrap lines
+vim.o.breakindent = true          -- Visually indent lines that breaks
 vim.opt.formatoptions:append('c') -- Auto-wrap comments using textwidth
 vim.opt.formatoptions:append('r') -- Insert comments on enter in insert
 vim.opt.formatoptions:append('o') -- Insert comments on o or O from normal 
