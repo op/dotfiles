@@ -2,6 +2,8 @@
 	name = Örjan Fors
 	email = o@42mm.org
 
+[includeIf "gitdir:~/src/github.com/northvolt/"]
+	path = ~/.config/git/config.northvolt
 [includeIf "gitdir:~/src/gitlab.com/29k/"]
 	path = ~/.config/git/config.29k
 
@@ -73,6 +75,7 @@
 [delta]
 	features = decorations
 	line-numbers = true
+	side-by-side = true
 	zero-style = dim syntax
 	syntax-theme = Monokai Extended
 	navigate = true  # use n and N to move between diff sections
