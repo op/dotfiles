@@ -328,7 +328,7 @@ bindsym $mod+f mode "$mode_focus"
 #
 # Scratchpad:
 #
-set $mode_scratch Scratchpad (j) journal (k) passwordsafe (a) scrcpy (i) signal (b) bitwarden
+set $mode_scratch Scratchpad (j) journal (k) passwordsafe (a) scrcpy (i) signal (b) bitwarden (t) teams
 mode "$mode_scratch" {
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -347,6 +347,7 @@ mode "$mode_scratch" {
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
     bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop
     bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
+    bindsym t mode default, exec swaymsg [class="Microsoft Teams - Preview"] scratchpad show || exec teams
 
     # Return to default mode
     bindsym Return mode default
@@ -526,17 +527,21 @@ smart_borders on
     for_window [app_id="firefox" title="Sharing Indicator"] border none
     for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
 
+    for_window [class="Microsoft Teams - Preview"] inhibit_idle focus
+
     for_window [app_id="gnome-control-center"] floating enable, border pixel
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
 
     # scratchpads
-    for_window [app_id="journal"]                floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
-    for_window [app_id="keepassx"]               floating enable, move scratchpad, scratchpad show
-    for_window [class="keepassx"]                floating enable, move scratchpad, scratchpad show
-    for_window [app_id="org.gnome.PasswordSafe"] floating enable, move scratchpad, scratchpad show
-    for_window [class="Bitwarden"]               floating enable, move scratchpad, scratchpad show
-    for_window [class="Signal"]                  floating enable, move scratchpad, scratchpad show
-    for_window [class="scrcpy"]                  floating enable, move scratchpad, scratchpad show
+    for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
+    for_window [app_id="org.gnome.PasswordSafe"]   floating enable, move scratchpad, scratchpad show
+    for_window [class="Bitwarden"]                 floating enable, move scratchpad, scratchpad show
+    for_window [class="Microsoft Teams - Preview"] floating enable, move scratchpad, scratchpad show
+    for_window [class="Signal"]                    floating enable, move scratchpad, scratchpad show
+    for_window [class="scrcpy"]                    floating enable, move scratchpad, scratchpad show
+
+    for_window [app_id="keepassx"]                 floating enable, move scratchpad, scratchpad show
+    for_window [class="keepassx"]                  floating enable, move scratchpad, scratchpad show
 
 #
 # Start software
