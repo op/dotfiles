@@ -530,7 +530,7 @@ smart_borders on
 
     for_window [class="Microsoft Teams - Preview"] inhibit_idle focus
 
-    for_window [app_id="gnome-control-center"] floating enable, border pixel
+    for_window [app_id="org.gnome.Settings"]   floating enable, border pixel
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
 
     # scratchpads
