@@ -3,7 +3,7 @@
 	email = o@42mm.org
 
 [includeIf "gitdir:~/src/github.com/northvolt/"]
-	path = ~/.config/git/config.northvolt
+	path = ~/.config/git/config.northvolt # match: gitconfig-nv
 [includeIf "gitdir:~/src/gitlab.com/29k/"]
 	path = ~/.config/git/config.29k
 

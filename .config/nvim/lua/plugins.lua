@@ -38,7 +38,6 @@ packer.startup(function(use)
 	-- Incremental parsing for programming tools
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		commit = "9425591", -- neovim 0.7+ is required after
 		requires = {
 			"p00f/nvim-ts-rainbow",
 		},
@@ -51,7 +50,6 @@ packer.startup(function(use)
 	-- Completion engine
 	use({
 		"hrsh7th/nvim-cmp",
-		commit = "93cf84f", -- neovim 0.7+ is required after
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -63,12 +61,6 @@ packer.startup(function(use)
 		config = function()
 			require("./plugins/cmp")
 		end,
-	})
-
-	-- XXX this is to downgrade version
-	use({
-		"saadparwaiz1/cmp_luasnip",
-		commit = "b108297", -- neovim 0.7+
 	})
 
 	-- Snippets
