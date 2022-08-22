@@ -1,5 +1,7 @@
 # Add local executables to path
 
+GOVERSION=go1.16.6
+source ~/src/github.com/northvolt/tools/etc/etc.sh
 source "$HOME/.config/environment.d/path.conf"
 source "$HOME/.cargo/env"
 export PATH
@@ -29,7 +31,7 @@ export XDG_TEMPLATES_DIR="${XDG_TEMPLATES_DIR-$HOME/Templates}"
 export XDG_VIDEOS_DIR="${XDG_VIDEOS_DIR-$HOME/Videos}"
 
 # Preferences
-export BROWSER=firefox
+export BROWSER=browser-work
 export EDITOR=nvim
 export SHELL=zsh
 export TERMINAL=alacritty
@@ -60,4 +62,5 @@ export CLUTTER_BACKEND=gdk
 # https://github.com/FedoraQt/QGnomePlatform
 #export QT_QPA_PLATFORMTHEME='gnome'
 
-[ -n "$DISPLAY" ] && export $(gnome-keyring-daemon --start)
+# gnome-keyring-daemon is started through systemd and socket activation
+[ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
