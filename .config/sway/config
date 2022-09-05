@@ -38,6 +38,11 @@ set $monitor1 eDP-1
 set $monitor2 HDMI-A-1
 set $monitor3 HDMI-A-2
 
+# clamshell mode
+bindswitch --reload --locked lid:on  output $monitor1 disable
+bindswitch --reload --locked lid:off output $monitor1 enable
+exec_always ~/bin/sway-reload.sh
+
 include /etc/sway/config-vars.d/*
 
 ### General configuration
