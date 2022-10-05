@@ -70,8 +70,14 @@ lspconfig.tsserver.setup(config)
 
 vim.lsp.set_log_level("debug")
 
-vim.cmd("autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx,*.vue,*.svelte EslintFixAll")
-vim.cmd("autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync()")
-vim.cmd("autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()")
-vim.cmd("autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()")
-vim.cmd("autocmd BufNewFile,BufRead *.gql setf graphql")
+-- vim.cmd("autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx,*.vue,*.svelte EslintFixAll")
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = { "*.go", "*.rs", "*.tf" },
+	callback = function()
+		vim.lsp.buf.formatting_sync()
+	end,
+})
+vim.api.nvim_create_autocmd(
+	{ "BufRead", "BufNewFile" },
+	{ pattern = { "Dockerfile.*", "*.Dockerfile" }, command = "setlocal filetype=dockerfile" }
+)
