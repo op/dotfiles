@@ -62,5 +62,8 @@ export CLUTTER_BACKEND=gdk
 # https://github.com/FedoraQt/QGnomePlatform
 #export QT_QPA_PLATFORMTHEME='gnome'
 
+# FIXME: keyring-daemon is already started through systemd
+#[ -n "$DISPLAY" ] && export $(gnome-keyring-daemon --start)
+
 # gnome-keyring-daemon is started through systemd and socket activation
-[ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+[ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
