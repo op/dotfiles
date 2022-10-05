@@ -312,16 +312,17 @@ bindsym $mod+f mode "$mode_focus"
 #
 # Keybindings
 #
+    set $playerctl playerctl -i firefox
     # Control media using del, page up and down
-    bindsym --locked $mod+Ctrl+Delete exec playerctl play-pause
-    bindsym --locked $mod+Ctrl+Prior  exec playerctl next
-    bindsym --locked $mod+Ctrl+Next   exec playerctl previous
+    bindsym --locked $mod+Ctrl+Delete exec $playerctl play-pause
+    bindsym --locked $mod+Ctrl+Prior  exec $playerctl next
+    bindsym --locked $mod+Ctrl+Next   exec $playerctl previous
 
     # Multimedia keys
-    bindsym --locked XF86AudioPlay  exec playerctl play
-    bindsym --locked XF86AudioPause exec playerctl pause
-    bindsym --locked XF86AudioNext  exec playerctl next
-    bindsym --locked XF86AudioPrev  exec playerctl previous
+    bindsym --locked XF86AudioPlay  exec $playerctl play
+    bindsym --locked XF86AudioPause exec $playerctl pause
+    bindsym --locked XF86AudioNext  exec $playerctl next
+    bindsym --locked XF86AudioPrev  exec $playerctl previous
 
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume 0 +1.5%
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume 0 -1.5%
