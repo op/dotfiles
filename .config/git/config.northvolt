@@ -1,0 +1,12 @@
+[user]
+	email = orjan.fors@northvolt.com
+	signingkey = 8C429E85F9DD1128
+
+[commit]
+	gpgsign = true
+
+[url "git@github.com:northvolt"]
+	insteadOf = https://github.com/northvolt
+
+[includeIf "gitdir:~/src/github.com/northvolt/"]
+	path = ~/src/github.com/northvolt/tools/.gitconfig-nv
