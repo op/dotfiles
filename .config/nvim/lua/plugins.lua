@@ -138,6 +138,8 @@ packer.startup(function(use)
 		end,
 	})
 
+	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+
 	---
 	--- Color scheme
 	---
