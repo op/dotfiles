@@ -68,6 +68,7 @@ lspconfig.rust_analyzer.setup(config)
 lspconfig.terraformls.setup(config)
 lspconfig.tflint.setup(config)
 lspconfig.tsserver.setup(config)
+lspconfig.yamlls.setup(config)
 
 vim.lsp.set_log_level("debug")
 
