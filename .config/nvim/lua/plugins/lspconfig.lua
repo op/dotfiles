@@ -48,6 +48,7 @@ local config = {
 }
 
 lspconfig.bashls.setup(config)
+lspconfig.ccls.setup(config)
 lspconfig.dockerls.setup(config)
 lspconfig.eslint.setup(config)
 lspconfig.gopls.setup(vim.tbl_deep_extend("error", config, {
