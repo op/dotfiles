@@ -48,7 +48,17 @@ local config = {
 }
 
 lspconfig.bashls.setup(config)
-lspconfig.ccls.setup(config)
+lspconfig.ccls.setup(vim.tbl_deep_extend("error", config, {
+	init_options = {
+		compilationDatabaseDirectory = "build",
+		index = {
+			threads = 2,
+		},
+		-- clang = {
+		-- excludeArgs = { "-frounding-math"}
+		-- },
+	},
+}))
 lspconfig.dockerls.setup(config)
 lspconfig.eslint.setup(config)
 lspconfig.gopls.setup(vim.tbl_deep_extend("error", config, {
