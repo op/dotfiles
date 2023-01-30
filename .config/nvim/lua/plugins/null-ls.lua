@@ -6,7 +6,7 @@ null_ls.setup({
 		-- null_ls.builtins.formatting.goimports,
 		-- null_ls.builtins.formatting.terraform_fmt,
 		null_ls.builtins.formatting.protolint,
-		null_ls.builtins.formatting.stylua,
+		-- null_ls.builtins.formatting.stylua,
 		-- null_ls.builtins.diagnostics.eslint,
 		null_ls.builtins.diagnostics.markdownlint,
 		-- null_ls.builtins.completion.spell,
@@ -14,4 +14,10 @@ null_ls.setup({
 	debug = true,
 })
 
-vim.cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync()")
+-- vim.cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync()")
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = { "*.lua" },
+	callback = function()
+		vim.lsp.buf.formatting_sync()
+	end,
+})

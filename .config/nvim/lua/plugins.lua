@@ -150,6 +150,25 @@ require("packer").startup(function(use)
 	-- Specific language extensions and tools
 	--
 	use({
+		'ray-x/go.nvim',
+		config = function()
+			require('go').setup({
+				-- notify = true,
+				-- linter = 'staticcheck',
+				lint_prompt_style = 'vt',
+			})
+		end,
+	})
+	
+	
+	-- Markdown preview within neovim.
+	-- Use :MarkdownPreview and :MarkdownPreviewStop
+	use({
+    		"iamcco/markdown-preview.nvim",
+    		run = function() vim.fn["mkdp#util#install"]() end,
+  	})
+	-- Use :Glow
+	use({
 		"ellisonleao/glow.nvim",
 		branch = "main",
 		config = function()

@@ -1,54 +1,53 @@
 local lspconfig = require("lspconfig")
 
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+
+local signs = { Error = "🔥", Warn = "⚠️ ", Hint = "💡", Info = "💡" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-
 	-- Enable completion triggered by <c-x><c-o>
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings.
-	local opts = { noremap = true, silent = true }
-
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	buf_set_keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	buf_set_keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
-	buf_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-	buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	local bufopts = { noremap=true, silent=true, buffer=bufnr }
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+	vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	vim.keymap.set("n", "<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, bufopts)
+	vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+	vim.keymap.set("n", "<leader>f", function()
+		vim.lsp.buf.formatting()
+	end, bufopts)
 end
 
-local config = {
-	on_attach = on_attach,
-	flags = {
-		-- This will be the default in neovim 0.7+
-		debounce_text_changes = 150,
-	},
-}
+local config = { on_attach = on_attach }
 
-lspconfig.bashls.setup(config)
-lspconfig.ccls.setup(vim.tbl_deep_extend("error", config, {
+lspconfig.bashls.setup({ on_attach = on_attach })
+lspconfig.ccls.setup({
+	on_attach = on_attach,
 	init_options = {
 		compilationDatabaseDirectory = "build",
 		index = {
@@ -58,38 +57,50 @@ lspconfig.ccls.setup(vim.tbl_deep_extend("error", config, {
 		-- excludeArgs = { "-frounding-math"}
 		-- },
 	},
-}))
-lspconfig.dockerls.setup(config)
-lspconfig.eslint.setup(config)
-lspconfig.gopls.setup(vim.tbl_deep_extend("error", config, {
+})
+lspconfig.dockerls.setup({ on_attach = on_attach })
+lspconfig.eslint.setup({ on_attach = on_attach })
+lspconfig.golangci_lint_ls.setup({ on_attach = on_attach })
+lspconfig.gopls.setup({
+	on_attach = on_attach,
 	settings = {
 		gopls = {
 			analyses = {
 				unusedparams = true,
 			},
-			staticcheck = true,
+			staticcheck = false,
 		},
 	},
-}))
-lspconfig.graphql.setup(config)
-lspconfig.marksman.setup(config)
-lspconfig.pyright.setup(config)
-lspconfig.rust_analyzer.setup(config)
-lspconfig.terraformls.setup(config)
-lspconfig.tflint.setup(config)
-lspconfig.tsserver.setup(config)
-lspconfig.yamlls.setup(config)
+})
+lspconfig.graphql.setup({ on_attach = on_attach })
+lspconfig.jsonnet_ls.setup({ on_attach = on_attach })
+-- lspconfig.marksman.setup({ on_attach = on_attach })
+lspconfig.pyright.setup({ on_attach = on_attach })
+lspconfig.rust_analyzer.setup({ on_attach = on_attach })
+lspconfig.sumneko_lua.setup({ on_attach = on_attach })
+lspconfig.terraformls.setup({ on_attach = on_attach })
+lspconfig.tflint.setup({ on_attach = on_attach })
+lspconfig.tsserver.setup({ on_attach = on_attach })
+lspconfig.yamlls.setup({ on_attach = on_attach })
 
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 
 -- vim.cmd("autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx,*.vue,*.svelte EslintFixAll")
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	pattern = { "*.go", "*.rs", "*.tf" },
-	callback = function()
-		vim.lsp.buf.formatting_sync()
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+-- 	pattern = { "*.go", "*.rs", "*.tf" },
+-- 	callback = function() 
+-- 		vim.lsp.buf.format()
+-- 	end
+-- })
+
 vim.api.nvim_create_autocmd(
 	{ "BufRead", "BufNewFile" },
 	{ pattern = { "Dockerfile.*", "*.Dockerfile" }, command = "setlocal filetype=dockerfile" }
 )
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+})
