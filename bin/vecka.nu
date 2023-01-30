@@ -1,1 +1,3 @@
-../var/Dropbox/etc/stow/user/bin/bin/vecka.nu
+#!/bin/sh
+
+date '+%V'
