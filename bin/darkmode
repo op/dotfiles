@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# TODO gtk3
 # TODO qt?
 # TODO nvim (reads ~/.darkmode already, need to trigger reload)
 # TODO dunst
@@ -60,6 +59,8 @@ cat <<EOF > ~/.cache/delta/darkmode.gitconfig
 [include]
   path = $delta_theme_path
 EOF
+
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$background"
 
 # reload applications
 swaymsg reload
