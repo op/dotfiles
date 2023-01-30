@@ -9,3 +9,6 @@ tags.temp
 .gradletasknamecache
 
 .envrc
+
+# ccls
+.ccls-cache
