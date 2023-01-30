@@ -1,5 +1,4 @@
-local packer = require("packer")
-packer.startup(function(use)
+require("packer").startup(function(use)
 	-- Initialise packer.nvim, package management for Neovim
 	-- https://github.com/wbthomason/packer.nvim
 	use("wbthomason/packer.nvim")
@@ -28,16 +27,18 @@ packer.startup(function(use)
 	})
 
 	-- Whenever there is no language server
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("./plugins/null-ls")
-		end,
-	})
+	-- use({
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	config = function()
+	-- 		require("./plugins/null-ls")
+	-- 	end,
+	-- })
 
 	-- Incremental parsing for programming tools
 	use({
 		"nvim-treesitter/nvim-treesitter",
+		tag = "v0.8.1",
+		-- commit = "573da1aaadd7402c3ab22fb1ae6853db1dc82acb",
 		requires = {
 			"p00f/nvim-ts-rainbow",
 		},
@@ -55,6 +56,7 @@ packer.startup(function(use)
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 		},
@@ -79,6 +81,34 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- GitHub AI suggestions
+	use({
+		"github/copilot.vim",
+		-- commit = "573da1aaadd7402c3ab22fb1ae6853db1dc82acb",
+		config = function()
+			vim.api.nvim_set_keymap(
+				"i",
+				"<C-J>",
+				[[copilot#Accept("\<CR>")]],
+				{ noremap = true, silent = true, expr = true, script = true }
+			)
+		end,
+	})
+
+	-- Telescope fuzzy finder
+	-- use {
+	-- 	"nvim-telescope/telescope.nvim",
+	-- 	requires = {
+	-- 		{ "nvim-lua/popup.nvim" },
+	-- 		{ "nvim-lua/plenary.nvim" },
+	-- 		{ "nvim-telescope/telescope-github.nvim" },
+	-- 		{ "kosayoda/nvim-lightbulb" },
+	-- 		{ "ANGkeith/telescope-terraform-doc.nvim" },
+	-- 	},
+	-- 	config = function()
+	-- 		require('plugins/telescope')
+	-- 	end,
+	-- }
 
 	--
 	-- File handling

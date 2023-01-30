@@ -72,18 +72,8 @@
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 
-[delta]
-	features = decorations
-	line-numbers = true
-	; side-by-side = true
-	zero-style = dim syntax
-	syntax-theme = Monokai Extended
-	navigate = true  # use n and N to move between diff sections
+[url "git@github.com:northvolt"]
+	insteadOf = https://github.com/northvolt
 
-[delta "interactive"]
-	keep-plus-minus-markers = false
-
-[delta "decorations"]
-	commit-style = raw
-	file-style = omit
-	hunk-header-style = file line-number syntax
+[include]
+	path = ~/.config/delta/config.gitconfig
