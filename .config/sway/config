@@ -335,7 +335,7 @@ bindsym $mod+f mode "$mode_focus"
 #
 # Scratchpad:
 #
-set $mode_scratch Scratchpad (j) journal (k) passwordsafe (a) scrcpy (i) signal (b) bitwarden (t) teams
+set $mode_scratch Scratchpad (j) journal (k) secrets (a) scrcpy (i) signal (b) bitwarden (t) teams
 mode "$mode_scratch" {
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -349,7 +349,7 @@ mode "$mode_scratch" {
 
     # Active a specific scratchpad. Automatically leave mode.
     bindsym j mode default, exec swaymsg [app_id="journal"] scratchpad show || exec $term --class journal -e nvim ~/var/dropbox/doc/journal*.md
-    bindsym k mode default, exec swaymsg [app_id="org.gnome.PasswordSafe"] scratchpad show || exec gnome-passwordsafe
+    bindsym k mode default, exec swaymsg [app_id="org.gnome.World.Secrets"] scratchpad show || exec secrets
     # bindsym k mode default, exec swaymsg [app_id="keepassx"] scratchpad show || exec keepassx
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
     bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop
@@ -526,6 +526,7 @@ smart_borders on
     for_window [class="Dpkg-reconfigure"] floating enable
     for_window [class="Steam"]            floating enable
     for_window [class="vlc"]              floating enable
+    for_window [app_id="pavucontrol"]     floating enable
 
     for_window [app_id="firefox" title="Sharing Indicator"] floating enable
     for_window [app_id="firefox" title="Sharing Indicator"] move position 50 ppt 0 px
@@ -541,7 +542,7 @@ smart_borders on
 
     # scratchpads
     for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
-    for_window [app_id="org.gnome.PasswordSafe"]   floating enable, move scratchpad, scratchpad show
+    for_window [app_id="org.gnome.World.Secrets"]  floating enable, move scratchpad, scratchpad show
     for_window [class="Bitwarden"]                 floating enable, move scratchpad, scratchpad show
     for_window [class="Microsoft Teams - Preview"] floating enable, move scratchpad, scratchpad show
     for_window [class="Signal"]                    floating enable, move scratchpad, scratchpad show
