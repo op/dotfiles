@@ -6,6 +6,10 @@ source "$HOME/.config/environment.d/path.conf"
 source "$HOME/.cargo/env"
 export PATH
 
+## pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
+
 ## XDG Base Directory spec
 # https://wiki.archlinux.org/title/XDG_Base_Directory#User_directories
 export XDG_CACHE_HOME="${XDG_CACHE_HOME-$HOME/.cache}"
