@@ -69,9 +69,6 @@
 	process = git-lfs filter-process
 	required = true
 
-[interactive]
-	diffFilter = delta --color-only --features=interactive
-
 [url "git@github.com:northvolt"]
 	insteadOf = https://github.com/northvolt
 
