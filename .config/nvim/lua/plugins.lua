@@ -27,12 +27,14 @@ require("packer").startup(function(use)
 	})
 
 	-- Whenever there is no language server
-	-- use({
-	-- 	"jose-elias-alvarez/null-ls.nvim",
-	-- 	config = function()
-	-- 		require("./plugins/null-ls")
-	-- 	end,
-	-- })
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		branch = "0.7-compat",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("./plugins/null-ls")
+		end,
+	})
 
 	-- Incremental parsing for programming tools
 	use({

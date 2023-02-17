@@ -60,7 +60,7 @@ lspconfig.ccls.setup({
 })
 lspconfig.dockerls.setup({ on_attach = on_attach })
 lspconfig.eslint.setup({ on_attach = on_attach })
-lspconfig.golangci_lint_ls.setup({ on_attach = on_attach })
+-- lspconfig.golangci_lint_ls.setup({ on_attach = on_attach })
 lspconfig.gopls.setup({
 	on_attach = on_attach,
 	settings = {

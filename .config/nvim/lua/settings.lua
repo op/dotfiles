@@ -2,7 +2,8 @@
 --- General
 ---
 vim.o.clipboard = 'unnamedplus' -- Use clipboard for ALL operations
-vim.o.mouse = ''                -- Disable mouse to be used
+vim.o.mouse = ''
+-- vim.o.mouse = ''               -- Allow mouse to be used in all modes
 vim.o.selectmode = 'mouse,key'
 vim.cmd('set nowrap')           -- Don't display long lines as wrapped
 vim.cmd('set nofixendofline')   -- Stop adding endlines
