@@ -27,12 +27,11 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 set $screensaver ~/bin/lock-screen
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
-# set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu ~/bin/run-menu | xargs swaymsg exec --
+set $menu ~/bin/select-menu-run | xargs swaymsg exec --
 
 set $monitor1 eDP-1
 set $monitor2 HDMI-A-1
@@ -362,7 +361,6 @@ mode "$mode_scratch" {
 }
 bindsym $mod+s mode "$mode_scratch"
 
-
 #
 # Resizing containers:
 #
@@ -483,7 +481,7 @@ bindsym $mod+apostrophe mode $mode_switch_window
 set $mode_notification "Notifications: (a) action (c) context (w) close (h) history pop (d) do not disturb (s) resume"
 mode $mode_notification {
     bindsym a mode default, exec makoctl action
-    bindsym c mode default, exec makoctl menu dmenu -p 'Select Action: '
+    bindsym c mode default, exec makoctl menu wofi -d -p 'Select Action: '
     bindsym w mode default, exec makoctl dismiss --all
     bindsym h mode default, exec makoctl restore
     bindsym d mode default, exec makoctl set-mode do-not-disturb
@@ -493,6 +491,20 @@ mode $mode_notification {
     bindsym Escape mode default
 }
 bindsym $mod+n mode $mode_notification
+
+#
+# Search for
+#
+set $mode_search "Search: (r) run (e) emoji"
+mode $mode_search {
+    bindsym e mode default, exec ~/bin/select-menu-emoji
+    bindsym r mode default, exec ~/bin/select-menu-run | xargs swaymsg exec --
+    bindsym p mode default, exec ~/bin/select-menu-run | xargs swaymsg exec --
+
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+bindsym $mod+slash mode $mode_search
 
 #
 # Interface:

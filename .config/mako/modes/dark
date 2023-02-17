@@ -19,7 +19,7 @@ invisible=1
 [app-name=Spotify]
 default-timeout=5000
 
-[app-name=Microsoft Teams - Preview]
+[app-name="Microsoft Teams - Preview"]
 default-timeout=5000
 
 # vim: ft=cfg
