@@ -1,16 +1,92 @@
 # Add local executables to path
 
-GOVERSION=go1.16.6
-source ~/src/github.com/northvolt/tools/etc/etc.sh
+### path
 source "$HOME/.config/environment.d/path.conf"
 source "$HOME/.cargo/env"
-export PATH
+export PATH=$PATH:$HOME/src/github.com/northvolt/tools/bin
 
-## pyenv
+### go
+export GOPATH=$HOME
+source ~/src/github.com/northvolt/tools/etc/etc.d/goproxy.sh
+
+### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
 
-## XDG Base Directory spec
+### debian
+export DEBFULLNAME="Örjan Persson"
+export DEBEMAIL="orange@fobie.net"
+export QUILT_PATCHES=debian/patches
+
+# if [[ -x $HOME/src/go.googlesource.com/go/bin/go ]]; then
+	# export PATH=$HOME/src/go.googlesource.com/go/bin:$PATH
+# fi
+
+### python
+export PYTHONSTARTUP=$HOME/.pystartup
+if [[ -d ~/lib/python ]]; then
+	export PYTHONPATH=~/lib/python:$PYTHONPATH
+fi
+
+### ruby
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+
+### javascript
+#export PATH=~/.npm-global/bin:$PATH
+
+### fastlane via cask
+if [[ -d ~/.fastlane/bin ]]; then
+	export PATH=$HOME/.fastlane/bin:$PATH
+fi
+
+### java
+# export JDK_HOME=/usr/lib/jvm/default-java
+# export JAVA_HOME=$JDK_HOME
+# export M2_HOME=/usr/share/maven
+# export M2_HOME=~/src/vanilla/maven/apache-maven-3.1.1
+# export PATH=~/src/vanilla/maven/apache-maven-3.1.1/bin:$PATH
+
+# HACK: make sure we use the Java version installed with Android Studio
+if [[ -d $HOME/var/android/android-studio/jre/bin ]]; then
+    export PATH=$HOME/var/android/android-studio/jre/bin:$PATH
+fi
+
+# ### android
+# if [[ -d $HOME/var/android/android-studio/sdk ]]; then
+#     export ANDROID_HOME=$HOME/var/android/android-studio/sdk
+# elif [[ -d /usr/lib/android-sdk ]]; then
+#     export ANDROID_HOME=/usr/lib/android-sdk
+# fi
+
+export ANDROID_SDK_ROOT=$HOME/sdk/android
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+
+if [[ -d $ANDROID_HOME/emulator ]]; then
+    export PATH=$PATH:$ANDROID_HOME/emulator
+fi
+if [[ -d $ANDROID_HOME/tools/bin ]]; then
+    export PATH=$PATH:$ANDROID_HOME/tools/bin
+fi
+if [[ -d $ANDROID_HOME/platform-tools ]]; then
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+# if [[ -d $HOME/var/android/android-studio/jre/jre ]]; then
+#     export JAVA_HOME=$HOME/var/android/android-studio/jre/jre
+# fi
+
+# if [[ -d $HOME/lib/android/android-ndk-r9b ]]; then
+#     export ANDROID_NDK=$HOME/lib/android/android-ndk-r9b
+# elif [[ -d /usr/lib/android-ndk ]]; then
+#     export ANDROID_NDK=/usr/lib/android-ndk
+# fi
+
+# if [[ -x $HOME/var/android/android-studio/sdk/platform-tools ]]; then
+#     export PATH=$HOME/var/android/android-studio/sdk/platform-tools:$PATH
+# fi
+
+### XDG Base Directory spec
 # https://wiki.archlinux.org/title/XDG_Base_Directory#User_directories
 export XDG_CACHE_HOME="${XDG_CACHE_HOME-$HOME/.cache}"
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME-$HOME/.config}"
