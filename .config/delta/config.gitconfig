@@ -11,4 +11,4 @@
   navigate-regex = commit [0-9a-f\\]+
 
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
