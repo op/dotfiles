@@ -2,12 +2,16 @@
 
 ### path
 source "$HOME/.config/environment.d/path.conf"
-source "$HOME/.cargo/env"
-export PATH=$PATH:$HOME/src/github.com/northvolt/tools/bin
+[[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+if [[ -d ~/src/github.com/northvolt/tools ]]; then
+  export PATH=$PATH:$HOME/src/github.com/northvolt/tools/bin
+fi
 
 ### go
 export GOPATH=$HOME
-source ~/src/github.com/northvolt/tools/etc/etc.d/goproxy.sh
+if [[ -d ~/src/github.com/northvolt/tools ]]; then
+  source ~/src/github.com/northvolt/tools/etc/etc.d/goproxy.sh
+fi
 
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -18,7 +22,7 @@ export DEBFULLNAME="Örjan Persson"
 export DEBEMAIL="orange@fobie.net"
 export QUILT_PATCHES=debian/patches
 
-# if [[ -x $HOME/src/go.googlesource.com/go/bin/go ]]; then
+# if [[ -x ~/src/go.googlesource.com/go/bin/go ]]; then
 	# export PATH=$HOME/src/go.googlesource.com/go/bin:$PATH
 # fi
 
@@ -48,7 +52,7 @@ fi
 # export PATH=~/src/vanilla/maven/apache-maven-3.1.1/bin:$PATH
 
 # HACK: make sure we use the Java version installed with Android Studio
-if [[ -d $HOME/var/android/android-studio/jre/bin ]]; then
+if [[ -d ~/var/android/android-studio/jre/bin ]]; then
     export PATH=$HOME/var/android/android-studio/jre/bin:$PATH
 fi
 

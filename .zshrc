@@ -24,7 +24,8 @@ if [[ $platform == 'darwin' ]]; then
 fi
 
 # Init zplug
-source ~/.zplug/init.zsh
+#[[ -s ~/.zplug/init.zsh ]] source ~/.zplug/init.zsh
+[[ -s /usr/share/zplug/init.zsh ]] && source /usr/share/zplug/init.zsh
 
 # Let zplug manage itself
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
@@ -307,9 +308,11 @@ alias scp='scp -O'
 # Northvolt standard setup
 # 
 # Continued from ~/.zshenv
-source ~/src/github.com/northvolt/tools/etc/aliases.sh
-source ~/src/github.com/northvolt/tools/etc/funcs.sh
-source ~/src/github.com/northvolt/nv-aws-sso-configs/aws-cli-helper-commands
+if [[ -d ~/src/github.com/northvolt/tools ]]; then
+  source ~/src/github.com/northvolt/tools/etc/aliases.sh
+  source ~/src/github.com/northvolt/tools/etc/funcs.sh
+  source ~/src/github.com/northvolt/nv-aws-sso-configs/aws-cli-helper-commands
+fi
 
 # Fix GPG issue for signing github commits
 export GPG_TTY=$(tty)
@@ -324,4 +327,4 @@ function awsdev() {
 # nvm
 nvm use --silent default
 # pyenv
-eval "$(pyenv init -)"
+which pyenv >/dev/null && eval "$(pyenv init -)"
