@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -e ~/.darkmode ]; then
+  style=~/.config/wofi/modes/dark.css
+else
+  style=~/.config/wofi/modes/light.css
+fi
+
+exec rofimoji \
+  --action clipboard \
+  --prompt '' \
+  --skin-tone neutral \
+  --selector wofi \
+  --selector-args "\-\-style=$style -x0 -y0" \
+  --clipboarder wl-copy \
+  --typer wtype
