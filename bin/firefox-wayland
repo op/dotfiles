@@ -1,2 +1,2 @@
 export MOZ_ENABLE_WAYLAND=1
-exec /usr/lib/firefox/firefox "$@"
+[[ -x /usr/lib/firefox/firefox ]] exec /usr/lib/firefox/firefox "$@" || exec /usr/bin/firefox "$@"
