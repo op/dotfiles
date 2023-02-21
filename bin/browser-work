@@ -1,0 +1,4 @@
+#!/bin/sh
+#exec firefox-wayland -P northvolt "$@"
+exec chrome-wayland --profile-directory=northvolt "$@"
+# exec google-chrome --profile-directory=northvolt "$@"

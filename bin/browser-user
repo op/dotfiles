@@ -1,0 +1,2 @@
+#!/bin/sh
+exec firefox-wayland -P orion "$@"
