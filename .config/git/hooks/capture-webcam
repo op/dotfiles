@@ -8,4 +8,4 @@ dir=`xdg-user-dir PICTURES`
 img="$dir/commits/$(date '+%Y')/commit-$(date '+%Y%m%d-%H%M%S').jpg"
 
 mkdir -p `dirname $img`
-fswebcam --quiet --no-banner --delay 1 --background "$img"
+fswebcam --quiet --device /dev/video2 --no-banner --delay 1 --background "$img"
