@@ -1,0 +1,3 @@
+exec google-chrome \
+  --enable-features=UseOzonePlatform \
+  --ozone-platform=wayland "$@"
