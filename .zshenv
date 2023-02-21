@@ -104,6 +104,7 @@ export XDG_DATA_DIRS="${XDG_DATA_DIRS-/usr/local/share/:/usr/share/}"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS-/etc/xdg}"
 
 ## XDG User directories
+# TODO: use xdg-user-dir tool
 [ -r "$XDG_CONFIG_HOME/user-dirs.dirs" ] && . "$XDG_CONFIG_HOME/user-dirs.dirs"
 export XDG_DESKTOP_DIR="${XDG_DESKTOP_DIR-$HOME/Desktop}"
 export XDG_DOCUMENTS_DIR="${XDG_DOCUMENTS_DIR-$HOME/Documents}"
