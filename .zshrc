@@ -24,7 +24,7 @@ if [[ $platform == 'darwin' ]]; then
 fi
 
 # Init zplug
-#[[ -s ~/.zplug/init.zsh ]] source ~/.zplug/init.zsh
+[[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh
 [[ -s /usr/share/zplug/init.zsh ]] && source /usr/share/zplug/init.zsh
 
 # Let zplug manage itself
