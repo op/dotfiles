@@ -6,6 +6,7 @@ source "$HOME/.config/environment.d/path.conf"
 if [[ -d ~/src/github.com/northvolt/tools ]]; then
   export PATH=$PATH:$HOME/src/github.com/northvolt/tools/bin
 fi
+export PATH=$PATH:$HOME/var/sync/base/bin
 
 ### go
 export GOPATH=$HOME
