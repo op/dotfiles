@@ -297,7 +297,8 @@ alias fd=fdfind
 alias vim='echo NOTE TO SELF: try nvim'
 
 # git as dotfile manager
-alias dotgit='git --work-tree $HOME --git-dir $HOME/.dot_git'
+alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
+alias dotgit=dot
 
 # HACK force use of legacy protocol for scp
 alias scp='scp -O'

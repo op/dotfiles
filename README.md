@@ -2,7 +2,7 @@
 
 Managed with git:
 ```zsh
-alias dotgit='git --work-tree $HOME --git-dir $HOME/.dot_git'
+alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 ```
 
 Colors in [Rosé Pine](https://rosepinetheme.com/).
@@ -13,8 +13,8 @@ Colors in [Rosé Pine](https://rosepinetheme.com/).
 ## Setup
 
 ```zsh
-git clone --bare https://github.com/op/dotfiles.git ~/.dot_git
-dotgit checkout
+git clone --bare https://github.com/op/dotfiles.git ~/.dotgit
+dot checkout
 ```
 
 ### xdg directories
@@ -23,7 +23,7 @@ I keep my xdg home tidy.
 
 ```zsh
 ls ~
-bin  doc  media  README.md  src  var
+bin  doc  README.md  src  var
 ```
 
 Migrate to [this xdg schema](.dotfiles/user-dirs.dirs), run: 
