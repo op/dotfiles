@@ -343,7 +343,7 @@ mode "$mode_scratch" {
 
     # Active a specific scratchpad. Automatically leave mode.
     bindsym j mode default, exec swaymsg [app_id="journal"] scratchpad show || exec $term --class journal -e nvim ~/var/sync/doc/journal*.md
-    bindsym k mode default, exec swaymsg [app_id="org.gnome.World.Secrets"] scratchpad show || exec secrets
+    bindsym k mode default, exec swaymsg [app_id=$secrets_app_id] scratchpad show || exec $secrets_app
     # bindsym k mode default, exec swaymsg [app_id="keepassx"] scratchpad show || exec keepassx
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
     bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop
@@ -549,7 +549,7 @@ smart_borders on
 
     # scratchpads
     for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
-    for_window [app_id="org.gnome.World.Secrets"]  floating enable, move scratchpad, scratchpad show
+    for_window [app_id=$secrets_app_id]            floating enable, move scratchpad, scratchpad show
     for_window [class="Bitwarden"]                 floating enable, move scratchpad, scratchpad show
     for_window [class="Microsoft Teams - Preview"] floating enable, move scratchpad, scratchpad show
     for_window [class="Signal"]                    floating enable, move scratchpad, scratchpad show
