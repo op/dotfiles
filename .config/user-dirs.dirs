@@ -1,0 +1,24 @@
+# This file was originally written by xdg-user-dirs-update
+#
+# Upper-case in directories sucks. Plural in directory names aren't perty. Many
+# folders are just a waste and clutters the home.
+#
+# Format is XDG_xxx_DIR="$HOME/yyy", where yyy is a shell-escaped
+# homedir-relative path, or XDG_xxx_DIR="/yyy", where /yyy is an
+# absolute path. No other format is supported.
+
+# hide folders you're probably not interested in
+XDG_TEMPLATES_DIR="$HOME/.xdg-template"
+XDG_DESKTOP_DIR="$HOME/.desktop"
+
+# these fit fine in the home
+XDG_DOCUMENTS_DIR="$HOME/doc"
+
+# these can be moved somewhere else
+XDG_DOWNLOAD_DIR="$HOME/var/download"
+XDG_PUBLICSHARE_DIR="$HOME/var/public"
+
+# group these together under media/ to unclutter home
+XDG_MUSIC_DIR="$HOME/media/music"
+XDG_PICTURES_DIR="$HOME/media/image"
+XDG_VIDEOS_DIR="$HOME/media/video"
