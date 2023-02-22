@@ -380,7 +380,7 @@ mode "$mode_resize" {
     bindsym Return mode default
     bindsym Escape mode default
 }
-#bindsym $mod+Shift+r mode "$mode_resize"
+bindsym $mod+z mode "$mode_resize"
 
 #
 # Gaps:
