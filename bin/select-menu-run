@@ -6,24 +6,9 @@ else
   style=~/.config/wofi/modes/light.css
 fi
 
-# automatically figure out the active monitor
-active=$(swaymsg -t get_outputs | jq -r '.[] | select(.active) | .name')
-case $active in
-  HDMI-A-1)
-    monitor=1
-    ;;
-  HDMI-A-2)
-    monitor=2
-    ;;
-  eDP-1|*)
-    monitor=0
-    ;;
-esac
-
-exec wofi -x0 -y0 \
+exec wofi \
   --show run \
   --prompt '' \
   --allow-images \
   --allow-markup \
-  --style=$style \
-  --monitor=$monitor
+  --style=$style

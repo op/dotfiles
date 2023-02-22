@@ -11,6 +11,6 @@ exec rofimoji \
   --prompt '' \
   --skin-tone neutral \
   --selector wofi \
-  --selector-args "\-\-style=$style -x0 -y0" \
+  --selector-args "\-\-style=$style" \
   --clipboarder wl-copy \
   --typer wtype

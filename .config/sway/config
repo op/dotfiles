@@ -493,8 +493,8 @@ bindsym $mod+n mode $mode_notification
 set $mode_search "Search: (r) run (e) emoji"
 mode $mode_search {
     bindsym e mode default, exec ~/bin/select-menu-emoji
-    bindsym r mode default, exec ~/bin/select-menu-run | xargs swaymsg exec --
-    bindsym p mode default, exec ~/bin/select-menu-run | xargs swaymsg exec --
+    bindsym r mode default, exec $menu
+    bindsym p mode default, exec $menu
 
     bindsym Return mode default
     bindsym Escape mode default
