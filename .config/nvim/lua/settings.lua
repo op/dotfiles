@@ -73,8 +73,9 @@ vim.o.completeopt = 'menu,menuone,noinsert,noselect'
 --- Appearance
 --
 
--- Enable darkmode when ~/.darkmode exists
-if vim.fn.filereadable(vim.fn.expand('~/.darkmode')) then
+-- Follow color scheme from GNOME
+local color_scheme = vim.fn.system('gsettings get org.gnome.desktop.interface gtk-theme')
+if string.find(color_scheme, 'dark') then
 	vim.o.background = 'dark'
 else
 	vim.o.background = 'light'

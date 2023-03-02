@@ -21,13 +21,13 @@ expand_parameter() {
     print ${(P)parameter};
 }
 
+# figure out next mode based on gnome setup
+local color_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
 local background
-if [[ -e ~/.darkmode ]]; then
+if [[ "$color_scheme" = *dark* ]]; then
     background=light
-    rm ~/.darkmode
 else
     background=dark
-    touch ~/.darkmode
 fi
 
 local sway_theme_path=$(expand_parameter sway_theme_path);
@@ -67,3 +67,7 @@ gsettings set org.gnome.desktop.interface color-scheme "prefer-$background"
 swaymsg reload
 touch ~/.config/alacritty/alacritty.yml
 makoctl reload
+
+for server in /var/run/user/$(id -u)/nvim.*; do
+    nvim --server $server --remote-send "<C-\\><C-N>::set background=$background<CR>"&
+done
