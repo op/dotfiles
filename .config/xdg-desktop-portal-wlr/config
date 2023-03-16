@@ -1,0 +1,5 @@
+[screencast]
+exec_before=screenshare-notification.sh start
+exec_after=screenshare-notification.sh stop
+chooser_type = simple
+chooser_cmd = slurp -f %o -ro
