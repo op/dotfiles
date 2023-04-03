@@ -1,0 +1,149 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Sets user-defined palette
+palette = "rosepine"
+
+# Prompt Format
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$character
+"""
+
+# 
+# Module Configurations
+#
+[aws]
+format = '[$symbol($profile )]($style)'
+style = 'gold'
+symbol = ''
+
+[aws.profile_aliases]
+bs-cb-dev = 'dev'
+bs-cb-prod = 'prod'
+
+[character]
+success_symbol = '[»](muted)'
+error_symbol = '[»](bold red)'
+vimcmd_symbol = "[«](foam)"
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+style = "pine"
+
+[directory.substitutions]
+'~/src/github.com/northvolt/spider-mapper' = '~/src/github.com/northvolt/spider'
+'~/src/github.com/northvolt' = '~/src/github.com/nvlt'
+'~/src/github.com' = '~/src/gh'
+
+[git_branch]
+format = "[$symbol($branch)]($style)"
+symbol = '[±](foam)'
+style = 'rose'
+ignore_branches = ['master', 'main']
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "foam"
+untracked = ""
+stashed = "≡"
+
+#
+# Palettes
+#
+# palette tables should be last in the config ⚓️
+[palettes.rosepine]
+base = "#191724"
+surface = "#1f1d2e"
+overlay = "#26233a"
+muted = "#6e6a86"
+subtle = "#908caa"
+text = "#e0def4"
+love = "#eb6f92"
+gold = "#f6c177"
+rose = "#ebbcba"
+pine = "#31748f"
+foam = "#9ccfd8"
+iris = "#c4a7e7"
+highlight_low = "#21202e"
+highlight_med = "#403d52"
+highlight_high = "#524f67"
+
+[palettes.rosepine_moon]
+base = "#232136"
+surface = "#2a273f"
+overlay = "#393552"
+muted = "#6e6a86"
+subtle = "#908caa"
+text = "#e0def4"
+love = "#eb6f92"
+gold = "#f6c177"
+rose = "#ea9a97"
+pine = "#3e8fb0"
+foam = "#9ccfd8"
+iris = "#c4a7e7"
+highlight_low = "#2a283e"
+highlight_med = "#44415a"
+highlight_high = "#56526e"
+
+[palettes.rosepine_dawn]
+nc = "#f8f0e7"
+base = "#faf4ed"
+surface = "#fffaf3"
+overlay = "#f2e9e1"
+muted = "#9893a5"
+subtle = "#797593"
+text = "#575279"
+love = "#b4637a"
+gold = "#ea9d34"
+rose = "#d7827e"
+pine = "#286983"
+foam = "#56949f"
+iris = "#907aa9"
+highlight_low = "#f4ede8"
+highlight_med = "#dfdad9"
+highlight_high = "#cecacd"

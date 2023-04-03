@@ -76,7 +76,6 @@ zplug "plugins/fasd", from:oh-my-zsh
 
 # Theme
 #zplug "mafredri/zsh-async" | zplug "sindresorhus/pure"
-zplug "themes/jreese", from:oh-my-zsh
 
 # Additional completions
 zplug "zsh-users/zsh-completions"
@@ -103,6 +102,9 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load # --verbose
+
+## starship for prompt
+eval "$(starship init zsh)"
 
 # Ignore commands if starting with #
 set -k
