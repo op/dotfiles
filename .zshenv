@@ -28,9 +28,8 @@ export QUILT_PATCHES=debian/patches
 # fi
 
 ### python
-export PYTHONSTARTUP=$HOME/.pystartup
 if [[ -d ~/lib/python ]]; then
-	export PYTHONPATH=~/lib/python:$PYTHONPATH
+  export PYTHONPATH=~/lib/python:$PYTHONPATH
 fi
 
 ### ruby
@@ -42,7 +41,7 @@ export PATH=$GEM_HOME/bin:$PATH
 
 ### fastlane via cask
 if [[ -d ~/.fastlane/bin ]]; then
-	export PATH=$HOME/.fastlane/bin:$PATH
+  export PATH=$HOME/.fastlane/bin:$PATH
 fi
 
 ### java
@@ -54,7 +53,7 @@ fi
 
 # HACK: make sure we use the Java version installed with Android Studio
 if [[ -d ~/var/android/android-studio/jre/bin ]]; then
-    export PATH=$HOME/var/android/android-studio/jre/bin:$PATH
+  export PATH=$HOME/var/android/android-studio/jre/bin:$PATH
 fi
 
 # ### android
@@ -68,13 +67,13 @@ export ANDROID_SDK_ROOT=$HOME/sdk/android
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 
 if [[ -d $ANDROID_HOME/emulator ]]; then
-    export PATH=$PATH:$ANDROID_HOME/emulator
+  export PATH=$PATH:$ANDROID_HOME/emulator
 fi
 if [[ -d $ANDROID_HOME/tools/bin ]]; then
-    export PATH=$PATH:$ANDROID_HOME/tools/bin
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
 fi
 if [[ -d $ANDROID_HOME/platform-tools ]]; then
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
 # if [[ -d $HOME/var/android/android-studio/jre/jre ]]; then
@@ -153,3 +152,8 @@ export CLUTTER_BACKEND=gdk
 
 # gnome-keyring-daemon is started through systemd and socket activation
 [ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
+
+# aws tooling granted.dev/
+alias assume="source assume"
+fpath=(~/.granted/zsh_autocomplete/assume/ $fpath)
+fpath=(~/.granted/zsh_autocomplete/granted/ $fpath)
