@@ -1,0 +1,2 @@
+[src/github.com/rose-pine/alacritty]
+checkout = git clone 'https://github.com/rose-pine/alacritty'

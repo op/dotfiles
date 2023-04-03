@@ -1,10 +1,5 @@
 # dotfiles
 
-Managed with git:
-```zsh
-alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
-```
-
 Colors in [Rosé Pine](https://rosepinetheme.com/).
 
 ![Rosé Pine](https://github.com/op/dotfiles/raw/main/.dotfiles/assets/screenshot.png)
@@ -14,7 +9,14 @@ Colors in [Rosé Pine](https://rosepinetheme.com/).
 
 ```zsh
 git clone --bare https://github.com/op/dotfiles.git ~/.dotgit
+alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
+
+# restore files in ~
 dot checkout
+
+# this gets zplug
+apt install myrepos
+mr checkout
 ```
 
 ### xdg directories
