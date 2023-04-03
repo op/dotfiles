@@ -13,6 +13,7 @@
 	co = checkout
 	st = status
 	stat = status
+	pfl = push --force-with-lease --force-if-includes
 
 	ds = diff --staged --stat -p -C
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
