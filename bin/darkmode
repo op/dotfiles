@@ -26,8 +26,10 @@ local color_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
 local background
 if [[ "$color_scheme" = *dark* ]]; then
     background=light
+    rm -f ~/.darkmode
 else
     background=dark
+    touch ~/.darkmode
 fi
 
 local sway_theme_path=$(expand_parameter sway_theme_path);
