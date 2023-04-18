@@ -6,6 +6,7 @@
 """
 """"""""""""""""""""""""""""""
 
+lua require("filetypes")
 lua require("plugins")
 lua require("settings")
 lua require("bindings")

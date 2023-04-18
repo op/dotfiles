@@ -29,7 +29,6 @@ require("packer").startup(function(use)
 	-- Whenever there is no language server
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		branch = "0.7-compat",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("./plugins/null-ls")
@@ -77,9 +76,22 @@ require("packer").startup(function(use)
 
 	use({
 		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
+		requires = "nvim-tree/nvim-web-devicons",
 		config = function()
-			require("trouble").setup({})
+			require("trouble").setup({
+				icons = false,
+				fold_open = "v", -- icon used for open folds
+				fold_closed = ">", -- icon used for closed folds
+				indent_lines = false, -- add an indent guide below the fold icons
+				signs = {
+					-- icons / text used for a diagnostic
+					error = "error",
+					warning = "warn",
+					hint = "hint",
+					information = "info",
+				},
+				use_diagnostic_signs = false,
+			})
 		end,
 	})
 
@@ -152,23 +164,24 @@ require("packer").startup(function(use)
 	-- Specific language extensions and tools
 	--
 	use({
-		'ray-x/go.nvim',
+		"ray-x/go.nvim",
 		config = function()
-			require('go').setup({
+			require("go").setup({
 				-- notify = true,
 				-- linter = 'staticcheck',
-				lint_prompt_style = 'vt',
+				lint_prompt_style = "vt",
 			})
 		end,
 	})
-	
-	
+
 	-- Markdown preview within neovim.
 	-- Use :MarkdownPreview and :MarkdownPreviewStop
 	use({
-    		"iamcco/markdown-preview.nvim",
-    		run = function() vim.fn["mkdp#util#install"]() end,
-  	})
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
 	-- Use :Glow
 	use({
 		"ellisonleao/glow.nvim",
