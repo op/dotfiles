@@ -10,6 +10,7 @@ local opt = vim.opt
 --
 -- General
 --
+opt.confirm = false -- Revert back to vim default
 opt.fixendofline = false -- Stop adding endlines
 opt.mouse = "" -- Disable mouse
 opt.scrolloff = 2 -- Show lines above and below cursor
