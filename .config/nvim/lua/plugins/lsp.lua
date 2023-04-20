@@ -47,7 +47,7 @@ return {
         "shfmt",
         "stylua",
         "tflint",
-        -- "tfsec",
+        "tfsec",
       },
     },
   },
