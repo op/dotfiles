@@ -1,3 +1,9 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Keybindings
+--
+-- Default keymaps that are always set:
+-- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+
+local Util = require("lazyvim.util")
+
+-- stylua: ignore
+vim.keymap.set("n", "<leader>uL", function() Util.toggle("list") end, { desc = "Toggle List" })
