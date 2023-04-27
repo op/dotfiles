@@ -313,7 +313,7 @@ bindsym $mod+f mode "$mode_focus"
     bindsym --locked $mod+Ctrl+Next   exec $playerctl previous
 
     # Multimedia keys
-    bindsym --locked XF86AudioPlay  exec $playerctl play
+    bindsym --locked XF86AudioPlay  exec $playerctl play-pause
     bindsym --locked XF86AudioPause exec $playerctl pause
     bindsym --locked XF86AudioNext  exec $playerctl next
     bindsym --locked XF86AudioPrev  exec $playerctl previous
