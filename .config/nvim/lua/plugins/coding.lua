@@ -9,13 +9,17 @@ return {
     },
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-      -- TODO: doesn't work
+      opts.completion = {
+        completeopt = vim.o.completeopt,
+      }
+      opts.experimental = {
+        ghost_text = false,
+      }
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+        { name = "emoji" },
+      }))
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = false,
-        }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
       })
     end,
   },
