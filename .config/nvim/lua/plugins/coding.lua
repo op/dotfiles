@@ -1,4 +1,7 @@
 return {
+  -- disable automatic insertion of pairs like parenthesis etc
+  { "echasnovski/mini.pairs", enabled = false },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
