@@ -64,6 +64,8 @@ opt.list = false
 vim.o.listchars = "eol:↵,tab:→ ,trail:·"
 opt.colorcolumn = "80"
 -- vim.cmd('set colorcolumn=80')
+opt.number = false
+opt.relativenumber = false
 
 -- Follow color scheme from GNOME
 -- TODO broken
