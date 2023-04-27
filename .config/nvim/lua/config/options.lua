@@ -47,8 +47,8 @@ opt.cinoptions = ":0,g0,p2s,t0,+1s,(0"
 ---
 --- Searching
 ---
-vim.cmd("set path+=**")
-vim.cmd("set wildignore+=*/tags,*/tmp/*,/var/*,*.a,*.o,*.obj,*.so,*.swp,*.zip,*.tar,*.pyc")
+opt.path:append("**")
+opt.wildignore:append("*/tags,*/tmp/*,/var/*,*.a,*.o,*.obj,*.so,*.swp,*.zip,*.tar,*.pyc")
 opt.wildmode = "list:longest,full"
 opt.hlsearch = true
 
@@ -64,7 +64,6 @@ opt.laststatus = 0
 opt.list = false
 vim.o.listchars = "eol:↵,tab:→ ,trail:·"
 opt.colorcolumn = "80"
--- vim.cmd('set colorcolumn=80')
 opt.number = false
 opt.relativenumber = false
 
