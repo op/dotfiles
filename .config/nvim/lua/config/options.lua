@@ -49,6 +49,7 @@ opt.cinoptions = ":0,g0,p2s,t0,+1s,(0"
 ---
 vim.cmd("set path+=**")
 vim.cmd("set wildignore+=*/tags,*/tmp/*,/var/*,*.a,*.o,*.obj,*.so,*.swp,*.zip,*.tar,*.pyc")
+opt.wildmode = "list:longest,full"
 opt.hlsearch = true
 
 --
