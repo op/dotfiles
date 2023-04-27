@@ -43,6 +43,7 @@ return {
     opts = {
       ensure_installed = {
         -- "checkmake",
+        "markdownlint",
         "shellcheck",
         "shfmt",
         "stylua",
