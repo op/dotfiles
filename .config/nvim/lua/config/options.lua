@@ -69,10 +69,9 @@ opt.number = false
 opt.relativenumber = false
 
 -- Follow color scheme from GNOME
--- TODO broken
---local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface gtk-theme")
---if string.find(color_scheme, "dark") then
---  opt.background = "dark"
---else
---  opt.background = "light"
---end
+local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
+if string.find(color_scheme, "dark") then
+  opt.background = "dark"
+else
+  opt.background = "light"
+end
