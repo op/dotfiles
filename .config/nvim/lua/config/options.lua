@@ -24,10 +24,10 @@ opt.ttimeoutlen = 50
 -- File handling
 --
 opt.backup = true
-vim.o.backupdir = vim.fn.expand("~/.local/state/nvim/backup/")
+opt.backupdir = { vim.fn.expand("~/.local/state/nvim/backup/") }
 opt.undofile = true
 opt.undolevels = 10240
-vim.g.netrw_dirhistmax = 0
+vim.go.netrw_dirhistmax = 0
 opt.fileencodings = "utf-8,default,latin1"
 
 --
@@ -62,7 +62,7 @@ opt.completeopt = "menu,menuone,noinsert,noselect"
 --
 opt.laststatus = 0
 opt.list = false
-vim.o.listchars = "eol:↵,tab:→ ,trail:·"
+opt.listchars = { eol = "↵", tab = "→ ", trail = "·" }
 opt.colorcolumn = "80"
 opt.number = false
 opt.relativenumber = false
