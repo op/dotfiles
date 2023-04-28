@@ -9,6 +9,14 @@ return {
       keys[#keys + 1] = { "<C-]>", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" }
       -- add <leader>e -- temporary until <leader>cd is noted
       keys[#keys + 1] = { "<leader>e", vim.diagnostic.open_float, desc = "Line Diagnostics" }
+
+      -- make sure hover window doesn't span more than 80 wide
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts)
+        opts = opts or {}
+        opts.max_width = opts.max_width or 80
+        return orig_util_open_floating_preview(contents, syntax, opts)
+      end
     end,
 
     opts = {
