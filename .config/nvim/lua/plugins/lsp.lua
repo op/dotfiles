@@ -7,8 +7,6 @@ return {
 
       -- add key CTRL-] -- jump to tag, in addition to gd
       keys[#keys + 1] = { "<C-]>", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" }
-      -- add <leader>e -- temporary until <leader>cd is noted
-      keys[#keys + 1] = { "<leader>e", vim.diagnostic.open_float, desc = "Line Diagnostics" }
 
       -- make sure hover window doesn't span more than 80 wide
       local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
