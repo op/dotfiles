@@ -8,6 +8,16 @@ local Util = require("lazyvim.util")
 -- stylua: ignore
 vim.keymap.set("n", "<leader>uL", function() Util.toggle("list") end, { desc = "Toggle List" })
 
+-- remap lazy to <leader>z from <leader>l
+vim.keymap.del("n", "<leader>l")
+vim.keymap.set("n", "<leader>z", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+
+-- CTRL-W {h,j,k,l} works fine for moving to different windows
+vim.keymap.del("n", "<C-h>")
+vim.keymap.del("n", "<C-j>")
+vim.keymap.del("n", "<C-k>")
+vim.keymap.del("n", "<C-l>")
+
 -- 'gq' is broken in recent versions of neovim + null-ls
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131#issuecomment-1457584752
 --
