@@ -38,7 +38,13 @@ return {
         rust_analyzer = {},
         terraformls = {},
         tflint = {},
-        yamlls = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              keyOrdering = false,
+            },
+          },
+        },
       },
     },
   },
