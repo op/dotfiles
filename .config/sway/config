@@ -550,7 +550,7 @@ smart_borders on
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
 
     # scratchpads
-    for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 900 height 800
+    for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 925 height 1080
     for_window [app_id=$secrets_app_id]            floating enable, move scratchpad, scratchpad show
     for_window [class="Bitwarden"]                 floating enable, move scratchpad, scratchpad show
     for_window [class="Microsoft Teams - Preview"] floating enable, move scratchpad, scratchpad show
