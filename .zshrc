@@ -92,6 +92,10 @@ zplug "lukechilds/zsh-nvm"
 # Gradle
 zplug "plugins/gradle", from:oh-my-zsh
 
+# ANSI MOTD
+zplug "yuhonas/zsh-ansimotd"
+export ANSI_MOTD_RATE_LIMIT_OUTPUT=8k
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install zplug plugins? [y/N]: "
