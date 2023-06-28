@@ -1,6 +1,6 @@
 [user]
 	email = orjan.fors@northvolt.com
-	signingkey = 8C429E85F9DD1128
+	signingkey = 83632323E5E41A4D
 
 [commit]
 	gpgsign = true
