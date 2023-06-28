@@ -91,6 +91,7 @@ input "type:keyboard" {
     xkb_layout us
     xkb_variant altgr-intl
     xkb_options grp:alt_shift_toggle
+    xkb_options compose:rwin
 
     repeat_delay 250
     repeat_rate 80
