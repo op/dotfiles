@@ -79,7 +79,6 @@ style = "pine"
 format = "([$symbol($branch)]($style) )"
 symbol = '[±](foam)'
 style = 'rose'
-ignore_branches = ['master', 'main']
 
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
