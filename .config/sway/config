@@ -491,10 +491,9 @@ bindsym $mod+n mode $mode_notification
 #
 # Search for
 #
-set $mode_search "Search: (r) run (e) write emoji (E) copy emoji"
+set $mode_search "Search: (r) run (e) emoji"
 mode $mode_search {
-    bindsym e mode default, exec ~/bin/select-menu-emoji select
-    bindsym Shift+e mode default, exec ~/bin/select-menu-emoji browse
+    bindsym e mode default, exec ~/bin/select-menu-emoji
     bindsym r mode default, exec $menu
     bindsym p mode default, exec $menu
 

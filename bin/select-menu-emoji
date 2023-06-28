@@ -1,16 +1,16 @@
 #!/bin/sh
 
 if [ -e ~/.darkmode ]; then
-  style=~/.config/wofi/modes/dark.css
+	style=~/.config/wofi/modes/dark.css
 else
-  style=~/.config/wofi/modes/light.css
+	style=~/.config/wofi/modes/light.css
 fi
 
 exec rofimoji \
-  --action clipboard \
-  --prompt '' \
-  --skin-tone neutral \
-  --selector wofi \
-  --selector-args "\-\-style=$style" \
-  --clipboarder wl-copy \
-  --typer wtype
+	--action type copy \
+	--prompt '' \
+	--skin-tone neutral \
+	--selector wofi \
+	--selector-args "\-\-style $style" \
+	--clipboarder wl-copy \
+	--typer wtype
