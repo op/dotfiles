@@ -75,11 +75,6 @@ truncation_length = 8
 truncate_to_repo = false
 style = "pine"
 
-[directory.substitutions]
-'~/src/github.com/northvolt/spider-mapper' = '~/src/github.com/northvolt/spider'
-'~/src/github.com/northvolt' = '~/src/github.com/nvlt'
-'~/src/github.com' = '~/src/gh'
-
 [git_branch]
 format = "[$symbol($branch)]($style)"
 symbol = '[±](foam)'
