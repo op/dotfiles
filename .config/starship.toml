@@ -57,7 +57,7 @@ $character
 # Module Configurations
 #
 [aws]
-format = '[$symbol($profile )]($style)'
+format = '([$symbol($profile)]($style) )'
 style = 'gold'
 symbol = ''
 
