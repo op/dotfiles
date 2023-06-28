@@ -150,5 +150,6 @@ export CLUTTER_BACKEND=gdk
 
 # aws tooling granted.dev/
 alias assume="source assume"
+alias dassume="source dassume"
 fpath=(~/.granted/zsh_autocomplete/assume/ $fpath)
 fpath=(~/.granted/zsh_autocomplete/granted/ $fpath)
