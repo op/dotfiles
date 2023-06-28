@@ -21,6 +21,7 @@
 
 	guilt = "!git --no-pager shortlog -sne $@"
 	full = "!f(){ ( elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \\| ); git pull; }; f"
+	versions = tag --sort=version:refname
 
 [core]
 	excludesfile = ~/.config/git/ignore
