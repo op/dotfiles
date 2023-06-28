@@ -76,7 +76,7 @@ truncate_to_repo = false
 style = "pine"
 
 [git_branch]
-format = "[$symbol($branch)]($style)"
+format = "([$symbol($branch)]($style) )"
 symbol = '[±](foam)'
 style = 'rose'
 ignore_branches = ['master', 'main']
