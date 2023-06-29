@@ -12,16 +12,25 @@ export XDG_DATA_DIRS="${XDG_DATA_DIRS-/usr/local/share/:/usr/share/}"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS-/etc/xdg}"
 
 ## XDG User directories
-# TODO: use xdg-user-dir tool
-[ -r "$XDG_CONFIG_HOME/user-dirs.dirs" ] && . "$XDG_CONFIG_HOME/user-dirs.dirs"
-export XDG_DESKTOP_DIR="${XDG_DESKTOP_DIR-$HOME/Desktop}"
-export XDG_DOCUMENTS_DIR="${XDG_DOCUMENTS_DIR-$HOME/Documents}"
-export XDG_DOWNLOAD_DIR="${XDG_DOWNLOAD_DIR-$HOME/Downloads}"
-export XDG_MUSIC_DIR="${XDG_MUSIC_DIR-$HOME/Music}"
-export XDG_PICTURES_DIR="${XDG_PICTURES_DIR-$HOME/Pictures}"
-export XDG_PUBLICSHARE_DIR="${XDG_PUBLICSHARE_DIR-$HOME/Public}"
-export XDG_TEMPLATES_DIR="${XDG_TEMPLATES_DIR-$HOME/Templates}"
-export XDG_VIDEOS_DIR="${XDG_VIDEOS_DIR-$HOME/Videos}"
+if command -v xdg-user-dir >/dev/null; then
+  export XDG_DESKTOP_DIR=$(xdg-user-dir DESKTOP)
+  export XDG_DOCUMENTS_DIR=$(xdg-user-dir DOCUMENTS)
+  export XDG_DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
+  export XDG_MUSIC_DIR=$(xdg-user-dir MUSIC)
+  export XDG_PICTURES_DIR=$(xdg-user-dir PICTURES)
+  export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
+  export XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
+  export XDG_VIDEOS_DIR=$(xdg-user-dir VIDEOS)
+else
+  export XDG_DESKTOP_DIR="$$HOME/.desktop"
+  export XDG_DOCUMENTS_DIR="$$HOME/doc"
+  export XDG_DOWNLOAD_DIR="$HOME/var/download"
+  export XDG_MUSIC_DIR="$HOME/doc/sound"
+  export XDG_PICTURES_DIR="$HOME/doc/pictures"
+  export XDG_PUBLICSHARE_DIR="$HOME/var/public"
+  export XDG_TEMPLATES_DIR="$HOME/.xdg-template"
+  export XDG_VIDEOS_DIR="$HOME/doc/video"
+fi
 
 ### path
 source "$HOME/.config/environment.d/path.conf"

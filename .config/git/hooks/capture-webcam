@@ -4,8 +4,15 @@
 
 set -euo pipefail
 
-dir=`xdg-user-dir PICTURES`
-img="$dir/commits/$(date '+%Y')/commit-$(date '+%Y%m%d-%H%M%S').jpg"
+root=$(xdg-user-dir PICTURES)
+dir="$root/photos/cam/commits/$(date '+%Y')"
+filename="$dir/commit-$(date '+%Y%m%d-%H%M%S').jpg"
 
-mkdir -p `dirname $img`
-fswebcam --quiet --device /dev/video2 --no-banner --delay 1 --background "$img"
+mkdir -p "$dir"
+fswebcam \
+	--quiet \
+	--device /dev/video2 \
+	--no-banner \
+	--delay 1 \
+	--background \
+	"$filename"
