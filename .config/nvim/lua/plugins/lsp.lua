@@ -28,20 +28,28 @@ return {
         },
         dockerls = {},
         gopls = {
-          analyses = { unusedparams = true },
-          staticcheck = false,
-        },
-        graphql = {},
-        jsonnet_ls = {},
-        lua_ls = {},
-        pyright = {},
-        rust_analyzer = {},
-        terraformls = {},
-        tflint = {},
-        yamlls = {
           settings = {
-            yaml = {
-              keyOrdering = false,
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = false,
+            },
+          },
+          graphql = {},
+          jsonls = {},
+          jsonnet_ls = {},
+          lua_ls = {},
+          pyright = {},
+          rust_analyzer = {},
+          terraformls = {},
+          tflint = {},
+          tsserver = {},
+          yamlls = {
+            settings = {
+              yaml = {
+                keyOrdering = false,
+              },
             },
           },
         },
