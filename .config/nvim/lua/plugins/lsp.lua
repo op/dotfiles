@@ -3,11 +3,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      -- add key CTRL-] -- jump to tag, in addition to gd
-      keys[#keys + 1] = { "<C-]>", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" }
-
       -- make sure hover window doesn't span more than 80 wide
       local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
       function vim.lsp.util.open_floating_preview(contents, syntax, opts)
@@ -28,6 +23,9 @@ return {
         },
         dockerls = {},
         gopls = {
+          keys = {
+            { "<C-]>", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
+          },
           settings = {
             gopls = {
               analyses = {
