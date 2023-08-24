@@ -70,6 +70,5 @@ swaymsg reload
 touch ~/.config/alacritty/alacritty.yml
 makoctl reload
 
-for server in /var/run/user/$(id -u)/nvim.*; do
-    nvim --server $server --remote-send "<C-\\><C-N>::set background=$background<CR>"&
-done
+cmd="<C-\\><C-N>::set background=$background<CR>"
+parallel "nvim --server {} --remote-send '$cmd'" ::: /var/run/user/$(id -u)/nvim.*
