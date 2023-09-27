@@ -569,9 +569,6 @@ smart_borders on
 # NetworkManager appletfor wifi.
 exec nm-applet
 
-# Execute portal to enable screensharing in wlroots through xdg-desktop-portal
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 #
 # Status Bar:
 #
