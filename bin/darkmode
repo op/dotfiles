@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-# TODO qt?
-# TODO nvim (reads ~/.darkmode already, need to trigger reload)
-# TODO dunst
-
 local sway_theme_path_dark=~/.config/sway/modes/dark.conf
 local sway_theme_path_light=~/.config/sway/modes/light.conf
 
