@@ -1,0 +1,61 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+#
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+
+# Colors
+import = ["~/.cache/alacritty/darkmode.toml"]
+
+[env]
+# TERM variable
+#
+# This value is used to set the `$TERM` environment variable for
+# each instance of Alacritty. If it is not present, alacritty will
+# check the local terminfo database and use `alacritty` if it is
+# available, otherwise `xterm-256color` is used.
+#TERM: alacritty
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+# Use built-in font for box drawing characters.
+#
+# If `true`, Alacritty will use a custom built-in font for box drawing
+# characters (Unicode points 2500 - 259f).
+#
+#builtin_box_drawing: true
+
+[font.bold]
+family = "Noto Mono"
+
+[font.bold_italic]
+family = "Noto Mono"
+
+# Glyph offset determines the locations of the glyphs within their cells with
+# the default being at the bottom. Increasing `x` moves the glyph to the right,
+# increasing `y` moves the glyph upwards.
+[font.glyph_offset]
+x = 1
+y = 0
+
+[font.italic]
+family = "Noto Mono"
+
+[font.normal]
+family = "Noto Mono"
+
+# Offset is the extra space around each character. `offset.y` can be thought of
+# as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 65536
+
+# Window class (Linux/BSD only):
+[window.class]
+# General application class
+general = "Alacritty"
