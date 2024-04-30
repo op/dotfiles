@@ -1,2 +1,10 @@
+#!/bin/sh
 export MOZ_ENABLE_WAYLAND=1
-[[ -x /usr/lib/firefox/firefox ]] exec /usr/lib/firefox/firefox "$@" || exec /usr/bin/firefox "$@"
+
+exec flatpak run org.mozilla.firefox "$@"
+
+# if [ -x /usr/lib/firefox/firefox ]; then
+# 	exec /usr/lib/firefox/firefox "$@"
+# else
+# 	exec /usr/bin/firefox "$@"
+# fi
