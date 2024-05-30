@@ -179,7 +179,8 @@ seat "*" {
     bindsym $mod+7 workspace number  7:七
     bindsym $mod+8 workspace number  8:八
     bindsym $mod+9 workspace number  9:九
-    bindsym $mod+0 workspace number 10:十
+    bindsym $mod+0 workspace number  0:零
+    bindsym $mod+minus workspace number 10:十
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number  1:一
     bindsym $mod+Shift+2 move container to workspace number  2:二
@@ -190,7 +191,8 @@ seat "*" {
     bindsym $mod+Shift+7 move container to workspace number  7:七
     bindsym $mod+Shift+8 move container to workspace number  8:八
     bindsym $mod+Shift+9 move container to workspace number  9:九
-    bindsym $mod+Shift+0 move container to workspace number 10:十
+    bindsym $mod+Shift+0 move container to workspace number  0:零
+    bindsym $mod+Shift+minus move container to workspace number 10:十
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
