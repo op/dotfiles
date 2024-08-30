@@ -32,6 +32,9 @@ else
   export XDG_VIDEOS_DIR="$HOME/doc/video"
 fi
 
+### flatpak
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share"
+
 ### path
 source "$HOME/.config/environment.d/path.conf"
 [[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
@@ -46,9 +49,19 @@ if [[ -d ~/src/github.com/northvolt/tools ]]; then
   source ~/src/github.com/northvolt/tools/etc/etc.d/goproxy.sh
 fi
 
+### zig
+if [[ -d ~/.zigenv ]]; then
+  export ZIGENV_ROOT=$HOME/.zigenv
+  export PATH=$ZIGENV_ROOT/bin:$ZIGENV_ROOT/shims:$PATH
+fi
+
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
+
+### terraform and terragrunt version managers
+[[ ! -d ~/.tfenv/bin ]] || export PATH="$HOME/.tfenv/bin:$PATH"
+[[ ! -d ~/.tgenv/bin ]] || export PATH="$HOME/.tgenv/bin:$PATH"
 
 ### debian
 export DEBFULLNAME="Örjan Persson"
@@ -72,9 +85,7 @@ export PATH=$GEM_HOME/bin:$PATH
 #export PATH=~/.npm-global/bin:$PATH
 
 ### fastlane via cask
-if [[ -d ~/.fastlane/bin ]]; then
-  export PATH=$HOME/.fastlane/bin:$PATH
-fi
+[[ ! -d ~/.fastlane/bin ]] || export PATH=$HOME/.fastlane/bin:$PATH
 
 ### java
 # export JDK_HOME=/usr/lib/jvm/default-java
@@ -154,11 +165,15 @@ export CLUTTER_BACKEND=gdk
 # https://github.com/FedoraQt/QGnomePlatform
 #export QT_QPA_PLATFORMTHEME='gnome'
 
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # gnome-keyring-daemon is started through systemd and socket activation
-[ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
+#[ -n "$DISPLAY" ] && export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
 
 # aws tooling granted.dev/
 alias assume="source assume"
 alias dassume="source dassume"
 fpath=(~/.granted/zsh_autocomplete/assume/ $fpath)
 fpath=(~/.granted/zsh_autocomplete/granted/ $fpath)
+
+# k8s
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

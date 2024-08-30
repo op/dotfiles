@@ -76,6 +76,10 @@ zplug "plugins/fasd", from:oh-my-zsh
 
 # Theme
 #zplug "mafredri/zsh-async" | zplug "sindresorhus/pure"
+#zplug "themes/jreese", from:oh-my-zsh
+#zplug '~/.config/zsh/theme', from:local, as:theme
+#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+
 
 # Additional completions
 zplug "zsh-users/zsh-completions"
@@ -93,7 +97,8 @@ zplug "lukechilds/zsh-nvm"
 zplug "plugins/gradle", from:oh-my-zsh
 
 # ANSI MOTD
-zplug "yuhonas/zsh-ansimotd"
+#zplug "yuhonas/zsh-ansimotd"
+#export ANSI_MOTD_DISABLE_LINE_WRAPPING=1
 export ANSI_MOTD_RATE_LIMIT_OUTPUT=8k
 
 # Install plugins if there are plugins that have not been installed
@@ -136,6 +141,7 @@ case "$OSTYPE" in
 esac
 
 alias ip='ip -c'
+alias tree='tree -C'
 
 ### General
 
@@ -318,16 +324,22 @@ alias scp='scp -O'
 if [[ -d ~/src/github.com/northvolt/tools ]]; then
   source ~/src/github.com/northvolt/tools/etc/aliases.sh
   source ~/src/github.com/northvolt/tools/etc/funcs.sh
+fi
+if [[ -d ~/src/github.com/northvolt/nv-aws-sso-configs ]]; then
   source ~/src/github.com/northvolt/nv-aws-sso-configs/aws-cli-helper-commands
+  function aws_config() {
+    conf=~/src/github.com/northvolt/nv-aws-sso-configs/config-$(echo $1 | sed s/^config-//)
+    if [ ! -e "$conf" ]; then
+      echo "no such config: select one of the following:"
+      ls -1 $(dirname $conf)/config-* | xargs basename -a | column
+      return
+    fi
+    ln -sf $conf ~/.aws/config
+  }
 fi
 
 # Fix GPG issue for signing github commits
 export GPG_TTY=$(tty)
-
-function awsdev() {
-        export AWS_PROFILE=nv-automation-dev
-        aws sso login --profile nv-automation-dev
-}
 
 [[ -s "/home/orion/.gvm/scripts/gvm" ]] && source "/home/orion/.gvm/scripts/gvm"
 
@@ -335,3 +347,26 @@ function awsdev() {
 nvm use --silent default
 # pyenv
 which pyenv >/dev/null && eval "$(pyenv init -)"
+
+# dive
+alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive"
+alias trivy="docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/.cache/trivy:/root/.cache/ -v .:/target -w /target aquasec/trivy:latest"
+
+# k8s
+source <(kubectl completion zsh)
+
+# fzf + ripgrep
+# https://news.ycombinator.com/item?id=38471822
+function frg {
+  result=$(rg --ignore-case --color=always --line-number --no-heading "$@" |
+    fzf --ansi \
+    --color 'hl:-1:underline,hl+:-1:underline:reverse' \
+    --delimiter ':' \
+    --preview "batcat --color=always {1} --theme='Solarized (light)' --highlight-line {2}" \
+    --preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
+  file=${result%%:*}
+  linenumber=$(echo "${result}" | cut -d: -f2)
+  if [[ -n "$file" ]]; then
+    $EDITOR +"${linenumber}" "$file"
+  fi
+}
