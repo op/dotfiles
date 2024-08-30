@@ -14,6 +14,9 @@ alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 # restore files in ~
 dot checkout
 
+# do not show untracked files
+dot config --local status.showUntrackedFiles no
+
 # this gets zplug
 apt install myrepos
 mr checkout
@@ -33,3 +36,11 @@ Migrate to [this xdg schema](.dotfiles/user-dirs.dirs), run:
 ```zsh
 python3 .dotfiles/xdg-setup.py
 ```
+
+## Credits
+
+Thanks for all the inspiration from loads of sources, including:
+
+* [dln](https://github.com/dln/dotfiles)
+* [lsjostro](http://github.com/lsjostro/dotfiles)
+* [webcoyote](https://github.com/webcoyote/dotfiles)
