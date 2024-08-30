@@ -6,6 +6,7 @@
   path = ~/.cache/delta/darkmode.gitconfig
 
 [delta]
+  # hyperlinks = true
   line-numbers = true
   navigate = true  # use n and N to move between commits
   navigate-regex = commit [0-9a-f\\]+

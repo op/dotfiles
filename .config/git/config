@@ -23,6 +23,8 @@
 	full = "!f(){ ( elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \\| ); git pull; }; f"
 	versions = tag --sort=version:refname
 
+	brc = reflog --grep-reflog 'checkout: moving'
+
 [core]
 	excludesfile = ~/.config/git/ignore
 	hooksPath = ~/.config/git/hooks
@@ -42,9 +44,13 @@
 	color = auto
 	rename = copy
 	tool = vimdiff
+	algorithm = histogram
 
 [push]
 	default = tracking
+
+[rebase]
+  autoSquash = true
 
 [branch "main"]
 	rebase = true
@@ -52,11 +58,12 @@
 	rebase = true
 
 [merge]
-	conflictstyle = diff3
-	#tool = vimdiff
+	#conflictstyle = diff3
+	conflictstyle = zdiff3
+	tool = nvimdiff
 	#tool = meld
 [mergetool]
-	#prompt = true
+	prompt = true
 
 [blame]
 	#date = relative
@@ -65,14 +72,18 @@
 	#date = default
 	#date = iso
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+#[filter "lfs"]
+#	clean = git-lfs clean -- %f
+#	smudge = git-lfs smudge -- %f
+#	process = git-lfs filter-process
+#	required = true
 
 [url "git@github.com:northvolt"]
 	insteadOf = https://github.com/northvolt
 
 [include]
 	path = ~/.config/delta/config.gitconfig
+[rerere]
+	enabled = true
+[http]
+	cookiefile = /home/orion/.gitcookies
