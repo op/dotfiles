@@ -17,10 +17,11 @@ import = ["~/.cache/alacritty/darkmode.toml"]
 # TERM = "xterm-256color"
 
 [font]
-size = 12.5
+size = 15
 
 [font.normal]
-family = "Noto Mono"
+#family = "Noto Mono"
+family = "Iosevka Term"
 
 [scrolling]
 history = 65536
