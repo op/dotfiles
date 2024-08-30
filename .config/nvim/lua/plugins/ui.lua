@@ -30,7 +30,7 @@ return {
         sections = {
           -- git branch
           lualine_b = {
-            { "b:gitsigns_head" },
+            --{ "b:gitsigns_head" },
           },
           -- show relative path
           lualine_c = {
@@ -59,15 +59,16 @@ return {
     end,
   },
 
-  -- add telescope-fzf-native
+  -- link to github etc
   {
-    "telescope.nvim",
+    "9seconds/repolink.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = "RepoLink",
+    opts = {},
+    keys = {
+      { "<leader>gy", "<cmd>RepoLink!<cr>", mode = { "n", "v" }, desc = "Yank git link" },
     },
   },
 }

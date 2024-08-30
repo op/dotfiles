@@ -1,6 +1,5 @@
 return {
-  { import = "lazyvim.plugins.extras.dap.core" },
-
+  --[[
   {
     "leoluz/nvim-dap-go",
 
@@ -51,4 +50,6 @@ return {
       }
     end,
   },
+  ]]
+  --
 }

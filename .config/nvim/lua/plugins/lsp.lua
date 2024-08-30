@@ -2,44 +2,52 @@ return {
   -- language server configurations
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      -- make sure hover window doesn't span more than 80 wide
-      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-      function vim.lsp.util.open_floating_preview(contents, syntax, opts)
-        opts = opts or {}
-        opts.max_width = opts.max_width or 80
-        return orig_util_open_floating_preview(contents, syntax, opts)
-      end
-    end,
 
     opts = {
+      inlay_hints = { enabled = false },
+
+      setup = {
+        rust_analyzer = function()
+          return true
+        end,
+      },
+
       servers = {
         bashls = {},
-        ccls = {
-          init_options = {
-            compilationDatabaseDirectory = "build",
-            index = { threads = 2 },
-          },
-        },
+        -- use clangd instead
+        -- https://github.com/MaskRay/ccls/issues/951
+        -- ccls = {
+        --   init_options = {
+        --     compilationDatabaseDirectory = "build",
+        --     index = { threads = 2 },
+        --   },
+        -- },
         dockerls = {},
         gopls = {
-          keys = {
-            { "<C-]>", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
+          cmd = {
+            "gopls",
+            -- "-rpc.trace",
+            -- "-remote=auto",
+            -- "-debug=localhost:6060",
           },
-          settings = {
-            gopls = {
-              analyses = {
-                fieldalignment = false,
-                unusedparams = true,
-              },
-              staticcheck = false,
-            },
-          },
+          -- settings = {
+          --   gopls = {
+          --     analyses = {
+          --       fieldalignment = true,
+          --       unusedparams = true,
+          --     },
+          --     staticcheck = false,
+          --   },
+          -- },
           graphql = {},
           jsonls = {},
           jsonnet_ls = {},
           lua_ls = {},
-          pyright = {},
+          -- pyright = {
+          --   enabled = false,
+          --   mason = false,
+          -- },
+          -- ruff = {},
           rust_analyzer = {},
           terraformls = {},
           tflint = {},
@@ -59,48 +67,50 @@ return {
   -- handle installation of linters, formatters etc
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- "checkmake",
+    opts = function(_, opts)
+      opts.eensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.eensure_installed, {
+        "basedpyright",
+        "goimports",
+        "gofumpt",
         "markdownlint",
-        "shellcheck",
+        "ruff",
         "shfmt",
+        "sqlfluff",
         "stylua",
         "tflint",
         "tfsec",
-      },
-    },
+      })
+    end,
   },
 
   -- additional things not handled by the language servers
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    -- event = { "BufReadPre", "BufNewFile" },
-    -- dependencies = { "mason.nvim" },
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        debug = false,
-        sources = {
-          nls.builtins.code_actions.shellcheck,
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      -- opts.debug = true
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.terraform_fmt,
 
-          nls.builtins.completion.spell,
-
-          nls.builtins.formatting.goimports,
-          -- nls.builtins.formatting.protolint,
-          nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.terraform_fmt,
-
-          nls.builtins.diagnostics.checkmake,
-          nls.builtins.diagnostics.golangci_lint,
-          nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.shellcheck,
-          nls.builtins.diagnostics.sqlfluff.with({ timeout = 60000 }),
-          nls.builtins.diagnostics.tfsec,
-          nls.builtins.diagnostics.terraform_validate,
-        },
-      }
+        null_ls.builtins.diagnostics.checkmake,
+        -- null_ls.builtins.diagnostics.golangci_lint.with({
+        --   env = {
+        --     -- limit memory usage
+        --     -- https://golangci-lint.run/usage/performance/
+        --     -- https://go.dev/doc/gc-guide
+        --     GOGC = "10",
+        --     GOMEMLIMIT = "512MiB",
+        --   },
+        -- }),
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.sqlfluff.with({ timeout = 60000 }),
+        null_ls.builtins.diagnostics.tfsec,
+        null_ls.builtins.diagnostics.terraform_validate,
+      })
     end,
   },
 }
