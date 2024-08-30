@@ -6,6 +6,8 @@ else
 	style=~/.config/wofi/modes/light.css
 fi
 
+# TODO: using rofimoji w/o wofi(?) doesn't work, see caveats
+# https://github.com/fdw/rofimoji
 exec rofimoji \
 	--action type copy \
 	--prompt '' \
