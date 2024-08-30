@@ -34,6 +34,7 @@ $conda\
 $meson\
 $spack\
 $memory_usage\
+${custom.aws_config_file}\
 $aws\
 $gcloud\
 $openstack\
@@ -64,6 +65,12 @@ symbol = ''
 [aws.profile_aliases]
 bs-cb-dev = 'dev'
 bs-cb-prod = 'prod'
+
+[custom.aws_config_file]
+format = "([$symbol($output)]($style) )"
+style = "iris"
+command = 'readlink -f ${AWS_CONFIG_FILE:-~/.aws/config} | xargs basename | sed "s/^config-\(systems-\)\?//"'
+when = "true"
 
 [character]
 success_symbol = '[»](muted)'
