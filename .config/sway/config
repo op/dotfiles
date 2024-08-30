@@ -345,7 +345,7 @@ mode "$mode_scratch" {
     bindsym minus scratchpad show
 
     # Active a specific scratchpad. Automatically leave mode.
-    bindsym j mode default, exec swaymsg [app_id="journal"] scratchpad show || exec $term --class journal -e nvim ~/doc/journal/*.md
+    bindsym j mode default, exec swaymsg [app_id="journal"] scratchpad show || exec $term --class journal -e hx ~/doc/journal/*.md
     bindsym k mode default, exec swaymsg [app_id=$secrets_app_id] scratchpad show || exec $secrets_app
     # bindsym k mode default, exec swaymsg [app_id="keepassx"] scratchpad show || exec keepassx
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
@@ -545,6 +545,7 @@ smart_borders on
     for_window [app_id="firefox" title="Sharing Indicator"] no focus
     for_window [app_id="firefox" title="Sharing Indicator"] border none
     for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
+    for_window [app_id="firefox" title="Meet - *"] inhibit_idle open
 
     for_window [class="Microsoft Teams - Preview"] inhibit_idle focus
 
@@ -568,7 +569,7 @@ smart_borders on
 # Start software
 #
 
-# NetworkManager appletfor wifi.
+# NetworkManager applet for wifi.
 exec nm-applet
 
 #
