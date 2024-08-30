@@ -7,7 +7,21 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
     export XDG_SESSION_TYPE=wayland
     export XDG_CURRENT_DESKTOP=sway
     export _JAVA_AWT_WM_NONREPARENTING=1
-    exec dbus-run-session sway
+
+    # gnome-keyring-daemon is deprecated and will be replaced with gcr.
+    #
+    # These lines are copied from
+    # /usr/lib/systemd/user/gnome-keyring-ssh.service
+    export eval $(gnome-keyring-daemon --start --components ssh,secrets,pkcs11)
+    dbus-update-activation-environment --verbose --systemd \
+      SSH_AUTH_SOCK=$SSH_AUTH_SOCK SSH_AGENT_LAUNCHER=gnome-keyring
+
+    # * with this, screensharing doesn't work
+    exec sway
+    # * with this
+    #exec dbus-run-session sway
+    # * with this, snap doesn't work (multiple dbus)
+    #exec dbus-launch --sh-syntax --exit-with-session sway
 elif [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty2" ]; then
     command -v gnome-shell >/dev/null || return
     export MOZ_ENABLE_WAYLAND=1
