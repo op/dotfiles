@@ -350,7 +350,7 @@ mode "$mode_scratch" {
     bindsym k mode default, exec swaymsg [app_id=$secrets_app_id] scratchpad show || exec $secrets_app
     # bindsym k mode default, exec swaymsg [app_id="keepassx"] scratchpad show || exec keepassx
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
-    bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop
+    bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop --password-store=gnome-libsecret
     bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
     bindsym t mode default, exec swaymsg [class="Microsoft Teams - Preview"] scratchpad show || exec teams
     bindsym d mode default, exec swaymsg [class="discord"] scratchpad show || exec flatpak run com.discordapp.Discord
