@@ -316,36 +316,11 @@ export MANPAGER="sh -c 'col -bx | batcat -l man -p --theme=\$(test -e ~/.darkmod
 alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 alias dotgit=dot
 
-# HACK force use of legacy protocol for scp
-alias scp='scp -O'
-
 ### Starship
 # eval "$(starship init zsh)"
 
-# Northvolt standard setup
-# 
-# Continued from ~/.zshenv
-if [[ -d ~/src/github.com/northvolt/tools ]]; then
-  source ~/src/github.com/northvolt/tools/etc/aliases.sh
-  source ~/src/github.com/northvolt/tools/etc/funcs.sh
-fi
-if [[ -d ~/src/github.com/northvolt/nv-aws-sso-configs ]]; then
-  source ~/src/github.com/northvolt/nv-aws-sso-configs/aws-cli-helper-commands
-  function aws_config() {
-    conf=~/src/github.com/northvolt/nv-aws-sso-configs/config-$(echo $1 | sed s/^config-//)
-    if [ ! -e "$conf" ]; then
-      echo "no such config: select one of the following:"
-      ls -1 $(dirname $conf)/config-* | xargs basename -a | column
-      return
-    fi
-    ln -sf $conf ~/.aws/config
-  }
-fi
-
 # Fix GPG issue for signing github commits
 export GPG_TTY=$(tty)
-
-[[ -s "/home/orion/.gvm/scripts/gvm" ]] && source "/home/orion/.gvm/scripts/gvm"
 
 # nvm
 nvm use --silent default
