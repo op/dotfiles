@@ -2,8 +2,8 @@
 	name = Örjan Fors
 	email = o@42mm.org
 
-[includeIf "gitdir:~/src/github.com/northvolt/"]
-	path = ~/.config/git/config.northvolt # match: gitconfig-nv
+[includeIf "gitdir:~/src/github.com/modal-labs/"]
+	path = ~/.config/git/config.modal-labs
 [includeIf "gitdir:~/src/gitlab.com/29k/"]
 	path = ~/.config/git/config.29k
 
@@ -49,13 +49,10 @@
 [push]
 	default = tracking
 
-[rebase]
-  autoSquash = true
-
-[branch "main"]
-	rebase = true
-[branch "master"]
-	rebase = true
+; [branch "main"]
+; 	rebase = true
+; [branch "master"]
+; 	rebase = true
 
 [merge]
 	#conflictstyle = diff3
@@ -77,9 +74,6 @@
 #	smudge = git-lfs smudge -- %f
 #	process = git-lfs filter-process
 #	required = true
-
-[url "git@github.com:northvolt"]
-	insteadOf = https://github.com/northvolt
 
 [include]
 	path = ~/.config/delta/config.gitconfig
