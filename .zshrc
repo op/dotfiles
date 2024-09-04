@@ -300,14 +300,17 @@ alias nodejs="env NODE_REPL_HISTORY='' NODE_NO_READLINE=1 rlwrap --history-filen
 
 ### Learn to use better alternatives
 alias cloc='echo NOTE TO SELF: try tokei instead'
-# alias find='echo NOTE TO SELF: try fd instead'
-alias bat="batcat --theme=\$(test -e ~/.darkmode && echo gruvbox-dark || echo gruvbox-light)"
-alias cat=bat
-export MANPAGER="sh -c 'col -bx | batcat -l man -p --theme=\$(test -e ~/.darkmode && echo gruvbox-dark || echo gruvbox-light)'"
 alias ls=exa
 #alias fd=fdfind ---exclude '^node_modules/'
 alias fd=fdfind
 alias vim='echo NOTE TO SELF: try nvim'
+
+alias bat="batcat --theme=\$(test -e ~/.darkmode && echo gruvbox-dark || echo gruvbox-light)"
+alias cat=bat
+
+# use bat for display man pages (the MANROFFOPT seem to fix some problem with ansi)
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | batcat -l man -p --theme=\$(test -e ~/.darkmode && echo gruvbox-dark || echo gruvbox-light)'"
 
 # git as dotfile manager
 alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
