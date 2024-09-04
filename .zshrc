@@ -90,7 +90,8 @@ zplug "zsh-users/zsh-autosuggestions"
 bindkey '^ ' autosuggest-accept
 
 # Node version manager
-zplug "lukechilds/zsh-nvm"
+
+#zplug "lukechilds/zsh-nvm"
 # -> run nvm upgrade once added
 
 # Gradle
