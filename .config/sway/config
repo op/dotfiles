@@ -31,7 +31,8 @@ set $screensaver ~/bin/lock-screen
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu ~/bin/select-menu-run | xargs swaymsg exec --
+set $menu2 ~/bin/select-menu-run | xargs swaymsg exec --
+set $menu $term --class sway-launcher -e sway-launcher-desktop.sh
 
 include /etc/sway/config-vars.d/*
 include '~/.config/sway/include/`uname -n`-*-pre.conf'
@@ -127,7 +128,7 @@ seat "*" {
     bindsym $mod+Shift+c kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu2
     bindsym $mod+p exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -499,6 +500,7 @@ mode $mode_search {
     bindsym e mode default, exec ~/bin/select-menu-emoji
     bindsym r mode default, exec $menu
     bindsym p mode default, exec $menu
+    bindsym d mode default, exec $menu2
 
     bindsym Return mode default
     bindsym Escape mode default
@@ -552,6 +554,8 @@ smart_borders on
     for_window [app_id="org.gnome.Settings"]   floating enable, border pixel
     for_window [app_id="gnome-control-center"] floating enable, border pixel
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
+
+    for_window [app_id="^sway-launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 3
 
     # scratchpads
     for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 925 height 1080
