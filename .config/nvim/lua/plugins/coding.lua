@@ -14,5 +14,5 @@ return {
   },
 
   -- enable direnv within nvim
-  { "direnv/direnv.vim", lazy = false, priority = 900 },
+  -- { "direnv/direnv.vim", lazy = false, priority = 900 },
 }
