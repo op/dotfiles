@@ -317,13 +317,16 @@ alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 alias dotgit=dot
 
 ### Starship
-# eval "$(starship init zsh)"
+which starship >/dev/null && eval "$(starship init zsh)"
 
 # Fix GPG issue for signing github commits
 export GPG_TTY=$(tty)
 
 # nvm
-nvm use --silent default
+if [[ -s ~/.nvm/nvm.sh ]]; then
+  source ~/.nvm/nvm.sh
+  nvm use --silent default
+fi
 # pyenv
 which pyenv >/dev/null && eval "$(pyenv init -)"
 
@@ -332,7 +335,7 @@ alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock wa
 alias trivy="docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/.cache/trivy:/root/.cache/ -v .:/target -w /target aquasec/trivy:latest"
 
 # k8s
-source <(kubectl completion zsh)
+which kubectll >/dev/null && source <(kubectl completion zsh)
 
 # fzf + ripgrep
 # https://news.ycombinator.com/item?id=38471822
