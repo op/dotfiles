@@ -31,7 +31,7 @@ ls ~
 bin  doc  README.md  src  var
 ```
 
-Migrate to [this xdg schema](.dotfiles/user-dirs.dirs), run: 
+Migrate to [this xdg schema](.dotfiles/user-dirs.dirs), run:
 
 ```zsh
 python3 .dotfiles/xdg-setup.py
