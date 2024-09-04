@@ -300,7 +300,7 @@ alias nodejs="env NODE_REPL_HISTORY='' NODE_NO_READLINE=1 rlwrap --history-filen
 
 ### Learn to use better alternatives
 alias cloc='echo NOTE TO SELF: try tokei instead'
-alias ls=exa
+alias ls=eza
 #alias fd=fdfind ---exclude '^node_modules/'
 alias fd=fdfind
 alias vim='echo NOTE TO SELF: try nvim'
