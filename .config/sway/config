@@ -352,7 +352,6 @@ mode "$mode_scratch" {
     bindsym a mode default, exec swaymsg [class="scrcpy"] scratchpad show || exec swaynag-warning -m 'scrcpy has not been launched'
     bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop --password-store=gnome-libsecret
     bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
-    bindsym t mode default, exec swaymsg [class="Microsoft Teams - Preview"] scratchpad show || exec teams
     bindsym d mode default, exec swaymsg [class="discord"] scratchpad show || exec flatpak run com.discordapp.Discord
     bindsym c mode default, exec swaymsg [app_id="clamtk"] scratchpad show || exec /usr/bin/clamtk
 
@@ -550,8 +549,6 @@ smart_borders on
     for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
     for_window [app_id="firefox" title="Meet - *"] inhibit_idle open
 
-    for_window [class="Microsoft Teams - Preview"] inhibit_idle focus
-
     for_window [app_id="org.gnome.Settings"]   floating enable, border pixel
     for_window [app_id="gnome-control-center"] floating enable, border pixel
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
@@ -562,7 +559,6 @@ smart_borders on
     for_window [app_id="journal"]                  floating enable, move scratchpad, scratchpad show, resize set width 925 height 1080
     for_window [app_id=$secrets_app_id]            floating enable, move scratchpad, scratchpad show
     for_window [class="Bitwarden"]                 floating enable, move scratchpad, scratchpad show
-    for_window [class="Microsoft Teams - Preview"] floating enable, move scratchpad, scratchpad show
     for_window [class="Signal"]                    floating enable, move scratchpad, scratchpad show
     for_window [class="discord"]                   floating enable, move scratchpad, scratchpad show
     for_window [class="scrcpy"]                    floating enable, move scratchpad, scratchpad show
