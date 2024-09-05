@@ -333,7 +333,7 @@ bindsym $mod+f mode "$mode_focus"
 #
 # Scratchpad:
 #
-set $mode_scratch Scratchpad (j) journal (k) secrets (a) scrcpy (i) signal (b) bitwarden (d) discord
+set $mode_scratch Scratchpad (j) journal (k) secrets (a) scrcpy (s) settings (i) signal (b) bitwarden (d) discord
 mode "$mode_scratch" {
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -550,8 +550,6 @@ smart_borders on
     for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
     for_window [app_id="firefox" title="Meet - *"] inhibit_idle open
 
-    for_window [app_id="org.gnome.Settings"]   floating enable, border pixel
-    for_window [app_id="gnome-control-center"] floating enable, border pixel
     for_window [app_id="ssh-askpass"]          floating enable, border pixel
 
     for_window [app_id="^sway-launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 3
@@ -564,6 +562,7 @@ smart_borders on
     for_window [class="discord"]                   floating enable, move scratchpad, scratchpad show
     for_window [class="scrcpy"]                    floating enable, move scratchpad, scratchpad show
     for_window [app_id="clamtk"]                   floating enable, move scratchpad, scratchpad show
+    for_window [app_id="org.gnome.Settings"]       floating enable, move scratchpad, scratchpad show
 
     for_window [app_id="keepassx"]                 floating enable, move scratchpad, scratchpad show
     for_window [class="keepassx"]                  floating enable, move scratchpad, scratchpad show
