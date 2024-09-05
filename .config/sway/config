@@ -353,7 +353,8 @@ mode "$mode_scratch" {
     bindsym i mode default, exec swaymsg [class="Signal"] scratchpad show || exec /opt/Signal/signal-desktop --password-store=gnome-libsecret
     bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
     bindsym d mode default, exec swaymsg [class="discord"] scratchpad show || exec flatpak run com.discordapp.Discord
-    bindsym c mode default, exec swaymsg [app_id="clamtk"] scratchpad show || exec /usr/bin/clamtk
+    bindsym c mode default, exec swaymsg [app_id="clamtk"] scratchpad show || exec clamtk
+    bindsym s mode default, exec swaymsg [app_id="org.gnome.Settings"] scratchpad show || env XDG_CURRENT_DESKTOP=GNOME gnome-control-center
 
     # Return to default mode
     bindsym Return mode default
