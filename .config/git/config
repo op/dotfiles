@@ -81,3 +81,6 @@
 	enabled = true
 [http]
 	cookiefile = /home/orion/.gitcookies
+
+[url "git@github.com:op"]
+	insteadOf = https://github.com/op
