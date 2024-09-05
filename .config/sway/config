@@ -333,7 +333,7 @@ bindsym $mod+f mode "$mode_focus"
 #
 # Scratchpad:
 #
-set $mode_scratch Scratchpad (j) journal (k) secrets (a) scrcpy (i) signal (b) bitwarden (t) teams (d) discord
+set $mode_scratch Scratchpad (j) journal (k) secrets (a) scrcpy (i) signal (b) bitwarden (d) discord
 mode "$mode_scratch" {
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -354,6 +354,7 @@ mode "$mode_scratch" {
     bindsym b mode default, exec swaymsg [class="Bitwarden"] scratchpad show || exec bitwarden
     bindsym t mode default, exec swaymsg [class="Microsoft Teams - Preview"] scratchpad show || exec teams
     bindsym d mode default, exec swaymsg [class="discord"] scratchpad show || exec flatpak run com.discordapp.Discord
+    bindsym c mode default, exec swaymsg [app_id="clamtk"] scratchpad show || exec /usr/bin/clamtk
 
     # Return to default mode
     bindsym Return mode default
@@ -565,6 +566,7 @@ smart_borders on
     for_window [class="Signal"]                    floating enable, move scratchpad, scratchpad show
     for_window [class="discord"]                   floating enable, move scratchpad, scratchpad show
     for_window [class="scrcpy"]                    floating enable, move scratchpad, scratchpad show
+    for_window [app_id="clamtk"]                   floating enable, move scratchpad, scratchpad show
 
     for_window [app_id="keepassx"]                 floating enable, move scratchpad, scratchpad show
     for_window [class="keepassx"]                  floating enable, move scratchpad, scratchpad show
