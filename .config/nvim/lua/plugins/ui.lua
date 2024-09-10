@@ -14,6 +14,9 @@ return {
   -- disable icons in statusbar and winbar
   { "SmiteshP/nvim-navic", enabled = false },
 
+  -- use specific version since 0.9 is too old
+  { "lewis6991/gitsigns.nvim", commit = "1ef74b54" },
+
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
