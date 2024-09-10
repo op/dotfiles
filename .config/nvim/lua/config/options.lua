@@ -113,6 +113,8 @@ vim.opt.relativenumber = false
 local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
 if string.find(color_scheme, "dark") then
   vim.opt.background = "dark"
+elseif vim.fn.filereadable(vim.fn.expand("~/.darkmode")) then
+  vim.opt.background = "dark"
 else
   vim.opt.background = "light"
 end
