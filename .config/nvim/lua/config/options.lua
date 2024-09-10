@@ -14,6 +14,47 @@ vim.opt.sidescroll = 1 -- Scroll whole page horizontally
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 50
 
+-- Clipboard in SSH session.
+--
+-- If OSC 52 is used as a fallback, copy will still not work unless we set a
+-- clipboard.
+vim.opt.clipboard = "unnamedplus" -- Clipboard for all interactions
+--
+-- Since we now have set clipboard, Neovim will not make use of OSC 52. Hence
+-- we need to explicitly set g.clipboard.
+--
+-- Alacritty has paste turned off for good reasons. We still need to set the
+-- paste action to something, or the g.clipboard will be invalid / not used.
+--
+-- This also forces nvim to make use of OSC 52 even if within tmux. This
+-- requires tmux 0.3.3 (and `tmux set -s set-clipboard on`).
+--
+-- References:
+-- * https://gpanders.com/blog/whats-new-in-neovim-0.10/#system-clipboard-synchronization
+-- * https://alacritty.org/config-alacritty.html#terminal
+-- * https://github.com/neovim/neovim/issues/29504
+-- * https://github.com/neovim/neovim/discussions/28010
+if vim.env.SSH_TTY then
+  -- Set paste to behave like normal paste
+  local function paste()
+    return {
+      vim.fn.split(vim.fn.getreg(""), "\n"),
+      vim.fn.getregtype(""),
+    }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+  }
+end
+
 --
 -- File handling
 --
