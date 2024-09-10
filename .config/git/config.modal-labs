@@ -1,15 +1,8 @@
 [user]
 	email = orion@modal.com
-	signingkey = ~/.ssh/modal.id_ed25519-git
 
-[gpg]
-  format = ssh
-
-[gpg.ssh]
-  allowedSignersFile = ~/src/github.com/modal-labs/allowed_signers
-
-[commit]
-	gpgsign = false
+[credential]
+	helper = store
 
 [url "git@github.com:modal-labs"]
 	insteadOf = https://github.com/modal-labs
