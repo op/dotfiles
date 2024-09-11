@@ -14,6 +14,10 @@ return {
 
       servers = {
         bashls = {},
+        bufls = {},
+        clangd = {
+          filetypes = { "c", "cpp", "cuda", "hpp" },
+        },
         -- use clangd instead
         -- https://github.com/MaskRay/ccls/issues/951
         -- ccls = {
@@ -71,6 +75,7 @@ return {
       opts.eensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.eensure_installed, {
         "basedpyright",
+        "bufls",
         "goimports",
         "gofumpt",
         "markdownlint",
