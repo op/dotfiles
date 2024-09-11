@@ -1,5 +1,5 @@
 return {
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
 
   -- flash makes search hickup
   { "folke/flash.nvim", enabled = false },
