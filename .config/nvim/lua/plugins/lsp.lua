@@ -52,7 +52,7 @@ return {
           --   mason = false,
           -- },
           -- ruff = {},
-          rust_analyzer = {},
+          -- rust_analyzer = {},
           terraformls = {},
           tflint = {},
           tsserver = {},
@@ -79,6 +79,7 @@ return {
         "goimports",
         "gofumpt",
         "markdownlint",
+        "rust-analyzer",
         "ruff",
         "shfmt",
         "sqlfluff",
@@ -117,5 +118,11 @@ return {
         null_ls.builtins.diagnostics.terraform_validate,
       })
     end,
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
 }
