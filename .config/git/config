@@ -2,6 +2,9 @@
 	name = Örjan Fors
 	email = o@42mm.org
 
+[url "git@github.com:op"]
+	insteadOf = https://github.com/op
+
 [includeIf "gitdir:~/src/github.com/modal-labs/"]
 	path = ~/.config/git/config.modal-labs
 [includeIf "gitdir:~/src/gitlab.com/29k/"]
