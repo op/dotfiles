@@ -75,7 +75,7 @@ return {
       opts.eensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.eensure_installed, {
         "basedpyright",
-        "bufls",
+        "buf-language-server",
         "goimports",
         "gofumpt",
         "markdownlint",
