@@ -574,6 +574,10 @@ smart_borders on
 # NetworkManager applet for wifi.
 exec nm-applet
 
+# Run wlsunset based on position -- one decimal precision is enough
+# http://ip-api.com/json/
+exec wlsunset -l 59.3 -L 18.1
+
 #
 # Status Bar:
 #
