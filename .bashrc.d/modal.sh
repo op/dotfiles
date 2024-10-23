@@ -6,6 +6,9 @@ if [[ ! -d ~/modal || ! "$instance_id" =~ [^i-] ]]; then
 	return 0 2>/dev/null
 fi
 
+# cargo  is required by starship
+[[ ! -s "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"
+
 # bob
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
