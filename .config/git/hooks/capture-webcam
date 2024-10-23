@@ -4,6 +4,8 @@
 
 set -euo pipefail
 
+[[ "$XDG_SESSION_TYPE" == "wayland" ]] || exit 0
+
 root=$(xdg-user-dir PICTURES)
 dir="$root/photos/cam/commits/$(date '+%Y')"
 filename="$dir/commit-$(date '+%Y%m%d-%H%M%S').jpg"
