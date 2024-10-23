@@ -1,18 +1,24 @@
 #!/bin/sh
 #
-exec google-chrome \
+
+# CHROME='google-chrome'
+CHROME='flatpak run com.google.Chrome'
+
+# use libsecret instead of basic text for storing cookies etc
+exec $CHROME \
 	--process-per-site \
+	--password-store=gnome-libsecret \
 	--enable-webrtc-pipewire-capturer \
 	--ozone-platform-hint=auto "$@"
 
-# exec google-chrome \
+# exec $CHROME \
 # 	--gtk-version=4 \
 # 	--process-per-site \
 # 	--ozone-platform-hint=auto "$@"
 
-#exec google-chrome \
+#exec $CHROME \
 #	--enable-features=UseOzonePlatform \
 #	--process-per-site \
 #	--ozone-platform=wayland "$@"
 
-#exec google-chrome "$@"
+#exec $CHROME "$@"
