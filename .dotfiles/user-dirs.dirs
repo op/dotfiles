@@ -19,6 +19,6 @@ XDG_DOWNLOAD_DIR="$HOME/var/download"
 XDG_PUBLICSHARE_DIR="$HOME/var/public"
 
 # group these together under doc/ to unclutter home
-XDG_MUSIC_DIR="$HOME/doc/music"
-XDG_PICTURES_DIR="$HOME/doc/image"
-XDG_VIDEOS_DIR="$HOME/doc/video"
+XDG_MUSIC_DIR="$HOME/doc/sound"
+XDG_PICTURES_DIR="$HOME/doc/pictures"
+XDG_VIDEOS_DIR="$HOME/doc/videos"
