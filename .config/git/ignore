@@ -12,3 +12,6 @@ tags.temp
 
 # ccls
 .ccls-cache
+
+# make ripgrep ignore .git
+/.git
