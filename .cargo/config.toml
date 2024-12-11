@@ -1,0 +1,11 @@
+[build]
+# keep number of parallel jobs down because of memory issue, defaults to # of CPUs
+# https://github.com/rust-lang/cargo/issues/12912
+#
+# ld takes roughly 3gb for some observed project. so 3gb * 6 = 18gb.
+jobs = 6
+
+# a profiling profile to always make it possible to profile release builds
+[profile.profiling]
+inherits = "release"
+debug = true
