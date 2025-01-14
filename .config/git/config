@@ -5,7 +5,7 @@
 [url "git@github.com:op"]
 	insteadOf = https://github.com/op
 
-[includeIf "gitdir:~/src/github.com/modal-labs/"]
+[includeIf "hasconfig:remote.*.url:git@github.com:modal-labs/**"]
 	path = ~/.config/git/config.modal-labs
 [includeIf "gitdir:~/src/gitlab.com/29k/"]
 	path = ~/.config/git/config.29k
