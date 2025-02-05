@@ -1,11 +1,18 @@
-[build]
-# keep number of parallel jobs down because of memory issue, defaults to # of CPUs
-# https://github.com/rust-lang/cargo/issues/12912
-#
-# ld takes roughly 3gb for some observed project. so 3gb * 6 = 18gb.
-jobs = 6
+[env]
+# Minimise peak memory usage by only running one instance. See mold(1).
+MOLD_JOBS = "1"
 
-# a profiling profile to always make it possible to profile release builds
+# Use mold instead of ld. It is both faster, allow us to limit the number
+# of linkers run in parallel, and is in itself concurrent.
+#
+# ld has been observed to take roughly 3gb of rss. Making mold only launch one
+# instance with the use of MOLD_JOBS, we can workaround a limitation with the
+# rust toolchain.
+# https://github.com/rust-lang/cargo/issues/12912
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
+# A profiling profile to always make it possible to profile release builds.
 [profile.profiling]
 inherits = "release"
 debug = true
