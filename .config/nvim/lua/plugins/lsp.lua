@@ -1,18 +1,13 @@
 return {
   -- language server configurations
+  { "williamboman/mason-lspconfig.nvim", version = "805c31" },
+
   {
     "neovim/nvim-lspconfig",
 
     opts = {
-      setup = {
-        rust_analyzer = function()
-          return true
-        end,
-      },
-
       servers = {
         bashls = {},
-        bufls = {},
         clangd = {
           filetypes = { "c", "cpp", "cuda", "hpp" },
         },
@@ -45,12 +40,18 @@ return {
           jsonls = {},
           jsonnet_ls = {},
           lua_ls = {},
-          -- pyright = {
-          --   enabled = false,
-          --   mason = false,
-          -- },
-          -- ruff = {},
-          -- rust_analyzer = {},
+          pyright = {
+            settings = {
+              analysis = {
+                extraPaths = {
+                  "~/client",
+                  "./internal_common",
+                  "./server",
+                  "./web",
+                },
+              },
+            },
+          },
           terraformls = {},
           tflint = {},
           tsserver = {},
@@ -66,66 +67,38 @@ return {
     },
   },
 
-  -- handle installation of linters, formatters etc
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      opts.eensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.eensure_installed, {
-        "basedpyright",
-        "buf-language-server",
-        "goimports",
-        "gofumpt",
-        "markdownlint",
-        "rust-analyzer",
-        "ruff",
-        "shfmt",
-        "sqlfluff",
-        "stylua",
-        "tflint",
-        "tfsec",
-      })
-    end,
-  },
-
-  -- additional things not handled by the language servers
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-      -- opts.debug = true
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        null_ls.builtins.completion.spell,
-        null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.terraform_fmt,
-
-        null_ls.builtins.diagnostics.checkmake,
-        -- null_ls.builtins.diagnostics.golangci_lint.with({
-        --   env = {
-        --     -- limit memory usage
-        --     -- https://golangci-lint.run/usage/performance/
-        --     -- https://go.dev/doc/gc-guide
-        --     GOGC = "10",
-        --     GOMEMLIMIT = "512MiB",
-        --   },
-        -- }),
-        null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.diagnostics.sqlfluff.with({ timeout = 60000 }),
-        null_ls.builtins.diagnostics.tfsec,
-        null_ls.builtins.diagnostics.terraform_validate,
-      })
-    end,
-  },
-
   {
     "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
     opts = {
       server = {
         default_settings = {
+          -- rust-analyzer configuration
+          -- https://rust-analyzer.github.io/book/configuration.html
           ["rust-analyzer"] = {
+            cargo = {
+              -- run only for used target
+              allTargets = false,
+
+              -- keep separate target directory to not block cargo
+              -- https://github.com/rust-lang/rust-analyzer/issues/4616
+              -- https://github.com/rust-lang/rust-analyzer/issues/6007
+              targetDir = true,
+
+              -- TODO: does this actually work?
+              extraEnv = {
+                ["MOLD_JOBS"] = "1",
+              },
+            },
+            -- reset all the ignored proc-macros via lazyvim
+            -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/rust.lua
+            procMacro = {
+              enable = true,
+              ignored = {
+                ["async-trait"] = {},
+                ["napi-derive"] = {},
+                ["async-recursion"] = {},
+              },
+            },
             rustfmt = {
               extraArgs = { "+nightly" },
             },

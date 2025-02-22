@@ -98,6 +98,10 @@ vim.opt.completeopt = "menu,menuone,noinsert,noselect"
 -- vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
+-- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer for diagnostics.
+-- The rest of LSP support will still be provided by rust-analyzer.
+-- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
+
 --
 -- Appearance
 --
@@ -108,6 +112,10 @@ vim.opt.listchars = { eol = "↵", tab = "→ ", trail = "·" }
 vim.opt.colorcolumn = "80"
 vim.opt.number = false
 vim.opt.relativenumber = false
+
+-- disable some bells and whistles
+vim.g.snacks_animate = false
+vim.g.smoothscroll = false
 
 -- Follow color scheme from GNOME
 local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")

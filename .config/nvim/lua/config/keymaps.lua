@@ -6,7 +6,7 @@
 local Util = require("lazyvim.util")
 
 -- stylua: ignore
-vim.keymap.set("n", "<leader>uL", function() Util.toggle("list") end, { desc = "Toggle List" })
+-- vim.keymap.set("n", "<leader>uL", function() Util.toggle("list") end, { desc = "Toggle List" })
 
 -- remap lazy to <leader>z from <leader>l
 vim.keymap.del("n", "<leader>l")
