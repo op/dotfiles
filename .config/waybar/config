@@ -1,28 +1,44 @@
 {
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 24, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
-  "spacing": 0, // Gaps between modules (4px)
-  // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"], // , "custom/media"],
-  "modules-center": ["sway/window"],
-  "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "battery", "clock", "tray"],
-  // "modules-right": ["pulseaudio", "network", "cpu", "battery", "battery#bat0", "clock", "tray"],
-
-  // Modules configuration
+  "height": 24,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "sway/window"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "battery",
+    "clock",
+    "tray"
+  ],
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{name}",
+    "format": "{name}"
   },
   "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+    "format": "<span style=\"italic\">{}</span>",
+    "max-length": 200
+  },
+  "sway/window": {
+    "format": "{}",
+    "max-length": 100,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "🦊 $1",
+      "zsh:(.*)": "> $1"
+    }
   },
   "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
-    "format-icons": ["", ""],
+    "format-icons": [
+      "",
+      ""
+    ],
     "tooltip": true,
     "tooltip-format": "{app}: {title}"
   },
@@ -34,7 +50,6 @@
     }
   },
   "tray": {
-    // "icon-size": 21,
     "spacing": 10
   },
   "clock": {
@@ -43,48 +58,28 @@
     "format-alt": "{:%H:%M}"
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": "   {usage}%",
     "tooltip": false
-  },
-  "memory": {
-    "format": " {}%"
-  },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    "format": "{icon} {temperatureC}°",
-    "format-critical": "{icon} {temperatureC}°",
-    "format-icons": ["", "", ""]
-  },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": ["", ""]
   },
   "battery": {
     "states": {
-      "good": 95,
-      "warning": 30,
+      "warning": 35,
       "critical": 15
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "{icon} {capacity}% ",
-    "format-plugged": "{icon} {capacity}% ",
-    "format-alt": "{time} {icon}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": ["", "", "", "", ""]
-  },
-  "battery#bat0": {
-    "bat": "BAT0"
-  },
-  "battery#bat2": {
-    "bat": "BAT2"
+    "format": "{icon}   {capacity}%",
+    "format-charging": "{icon}   {capacity}% ",
+    "format-plugged": "{icon}   {capacity}% ",
+    "format-alt": "{icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
   "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "",
+    "format-wifi": " ",
     "format-ethernet": "jipaddr}/{cidr} ",
     "tooltip-format": "{essid} ({signalStrength}%) {ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
@@ -92,29 +87,19 @@
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{icon}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": " ",
-    "format-source-muted": "",
+    "format": "{icon}  {format_source}",
+    "format-muted": "  {format_source}",
+    "format-source": " ",
+    "format-source-muted": " ",
     "tooltip-format": "{volume}% {format_source}",
     "format-icons": {
       "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "pavucontrol"
-  },
-  "wireplumber": {
-    "format": "{volume}% {icon}",
-    "format-muted": "",
-    "on-click": "helvum",
-    "format-icons": ["", "", ""]
   }
 }
