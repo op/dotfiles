@@ -485,8 +485,8 @@ mode $mode_notification {
     bindsym c mode default, exec makoctl menu wofi -d -p 'Select Action: '
     bindsym w mode default, exec makoctl dismiss --all
     bindsym h mode default, exec makoctl restore
-    bindsym d mode default, exec makoctl mode -s do-not-disturb
-    bindsym s mode default, exec makoctl mode -s default
+    bindsym d mode default, exec notify-send -wt 1000 Notifications Disabled && makoctl mode -t do-not-disturb
+    bindsym s mode default, exec makoctl mode -s default && notify-send -t 2000 Notifications Enabled
 
     bindsym Return mode default
     bindsym Escape mode default
