@@ -120,9 +120,9 @@ vim.g.smoothscroll = false
 -- Follow color scheme from GNOME
 local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
 if string.find(color_scheme, "dark") then
-  vim.opt.background = "dark"
-elseif vim.fn.filereadable(vim.fn.expand("~/.darkmode")) then
-  vim.opt.background = "dark"
+  vim.o.background = "dark"
+elseif vim.fn.filereadable(vim.fn.expand("~/.darkmode")) == 1 then
+  vim.o.background = "dark"
 else
-  vim.opt.background = "light"
+  vim.o.background = "light"
 end
