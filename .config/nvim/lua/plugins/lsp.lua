@@ -77,7 +77,7 @@ return {
           ["rust-analyzer"] = {
             cargo = {
               -- run only for used target
-              allTargets = false,
+              -- allTargets = false,
 
               -- keep separate target directory to not block cargo
               -- https://github.com/rust-lang/rust-analyzer/issues/4616
