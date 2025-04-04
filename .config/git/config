@@ -28,6 +28,13 @@
 
 	brc = reflog --grep-reflog 'checkout: moving'
 
+	# delta
+	d-n = !git -c delta.features=+line-numbers
+	d-s = !git -c delta.features=+side-by-side
+	d-sn = !git -c delta.features='+line-numbers side-by-side'
+	d-ns = d-sn
+	n-d = !git -c core.pager='less' -c pager.diff='less' -c pager.show='less' -c pager.log='less -n +\"/^commit [0-9af\\]+[^ \\]+\"'
+
 [core]
 	excludesfile = ~/.config/git/ignore
 	hooksPath = ~/.config/git/hooks
