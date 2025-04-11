@@ -40,18 +40,7 @@ return {
           jsonls = {},
           jsonnet_ls = {},
           lua_ls = {},
-          pyright = {
-            settings = {
-              analysis = {
-                extraPaths = {
-                  "~/client",
-                  "./internal_common",
-                  "./server",
-                  "./web",
-                },
-              },
-            },
-          },
+          pyright = {},
           terraformls = {},
           tflint = {},
           tsserver = {},
