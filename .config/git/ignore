@@ -15,3 +15,6 @@ tags.temp
 
 # make ripgrep ignore .git
 /.git
+
+# ignore this for modal repository
+/pyrightconfig.json
