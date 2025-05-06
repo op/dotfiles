@@ -9,7 +9,10 @@ MOLD_JOBS = "1"
 # instance with the use of MOLD_JOBS, we can workaround a limitation with the
 # rust toolchain.
 # https://github.com/rust-lang/cargo/issues/12912
+#
+# clang is used because we sometime use an older GCC version.
 [target.x86_64-unknown-linux-gnu]
+linker = "clang"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
 # A profiling profile to always make it possible to profile release builds.
