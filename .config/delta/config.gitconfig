@@ -7,9 +7,12 @@
 
 [delta]
   # hyperlinks = true
-  line-numbers = true
+  # line-numbers = true
   navigate = true  # use n and N to move between commits
   navigate-regex = ^commit [0-9a-f\\]+
 
-[interactive]
-  diffFilter = delta --color-only
+#[interactive]
+#  diffFilter = delta --color-only
+
+[delta "no-line-numbers"]
+	line-numbers = false

@@ -66,7 +66,7 @@
     hunk-header-file-style = "#999999"
     hunk-header-line-number-style = bold "#003300"
     hunk-header-style = file line-number syntax
-    line-numbers = true
+    # line-numbers = true
     line-numbers-left-style = "#022b45"
     line-numbers-minus-style = "#80002a"
     line-numbers-plus-style = "#003300"
