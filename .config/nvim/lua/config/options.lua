@@ -92,12 +92,6 @@ vim.opt.hlsearch = true
 --
 vim.opt.completeopt = "menu,menuone,noinsert,noselect"
 
---
--- LSP
---
--- vim.g.lazyvim_python_lsp = "basedpyright"
-vim.g.lazyvim_python_ruff = "ruff"
-
 -- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer for diagnostics.
 -- The rest of LSP support will still be provided by rust-analyzer.
 -- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
@@ -126,3 +120,13 @@ elseif vim.fn.filereadable(vim.fn.expand("~/.darkmode")) == 1 then
 else
   vim.o.background = "light"
 end
+
+--
+-- LazyVim
+--
+-- vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
+
+-- Use telescope instead of fzf since it has venv-selector
+-- https://github.com/LazyVim/LazyVim/issues/4113
+-- vim.g.lazyvim_picker = "telescope"
