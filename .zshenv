@@ -55,6 +55,9 @@ if [[ -d ~/.zigenv ]]; then
   export PATH=$ZIGENV_ROOT/bin:$ZIGENV_ROOT/shims:$PATH
 fi
 
+### bob nvim version manager
+[[ ! -d ~/.local/share/bob/nvim-bin ]] || export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
