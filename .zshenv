@@ -32,6 +32,9 @@ else
   export XDG_VIDEOS_DIR="$HOME/doc/video"
 fi
 
+# grimshot supports XDG_SCREENSHOTS_DIR
+export XDG_SCREENSHOTS_DIR="$XDG_PICTURES_DIR/screenshots"
+
 ### flatpak
 export XDG_DATA_DIRS="$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share"
 
