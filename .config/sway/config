@@ -528,19 +528,20 @@ smart_borders on
 # Windows:
 #
     # various launched applications
-    for_window [class="Mplayer"]          floating enable
-    for_window [class="Skype"]            floating enable
-    for_window [class="zoom"]             floating enable
-    for_window [class="Cssh"]             floating enable
-    for_window [class="emulator-arm"]     floating enable
-    for_window [class="emulator64-arm"]   floating enable
-    for_window [class="jetbrains-studio"] floating enable
-    for_window [class="vncviewer"]        floating enable
-    for_window [class="gvncviewer"]       floating enable
-    for_window [class="Dpkg-reconfigure"] floating enable
-    for_window [class="Steam"]            floating enable
-    for_window [class="vlc"]              floating enable
-    for_window [app_id="pavucontrol"]     floating enable
+    for_window [class="Mplayer"]           floating enable
+    for_window [class="Skype"]             floating enable
+    for_window [class="zoom"]              floating enable
+    for_window [class="Cssh"]              floating enable
+    for_window [class="emulator-arm"]      floating enable
+    for_window [class="emulator64-arm"]    floating enable
+    for_window [class="jetbrains-studio"]  floating enable
+    for_window [class="vncviewer"]         floating enable
+    for_window [class="gvncviewer"]        floating enable
+    for_window [class="Dpkg-reconfigure"]  floating enable
+    for_window [class="Steam"]             floating enable
+    for_window [class="vlc"]               floating enable
+    for_window [app_id="pavucontrol"]      floating enable
+    for_window [app_id="firmware-updater"] floating enable
 
     for_window [app_id="firefox" title="Sharing Indicator"] floating enable
     for_window [app_id="firefox" title="Sharing Indicator"] move position 50 ppt 0 px
