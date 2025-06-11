@@ -47,10 +47,7 @@ fi
 export PATH=$PATH:$HOME/var/sync/base/bin
 
 ### go
-export GOPATH=$HOME
-if [[ -d ~/src/github.com/northvolt/tools ]]; then
-  source ~/src/github.com/northvolt/tools/etc/etc.d/goproxy.sh
-fi
+[[ ! -d /usr/local/go ]] || export PATH="$PATH:/usr/local/go/bin"
 
 ### zig
 if [[ -d ~/.zigenv ]]; then
