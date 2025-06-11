@@ -28,6 +28,8 @@
 
 	brc = reflog --grep-reflog 'checkout: moving'
 
+	loud-rebase = -c commit.verbose=true rebase
+
 	# delta
 	d-n = !git -c delta.features=+line-numbers
 	d-s = !git -c delta.features=+side-by-side
