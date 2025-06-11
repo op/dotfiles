@@ -90,6 +90,9 @@ export PATH=$GEM_HOME/bin:$PATH
 ### fastlane via cask
 [[ ! -d ~/.fastlane/bin ]] || export PATH=$HOME/.fastlane/bin:$PATH
 
+### used by uv
+[[ ! -d ~/.local/bin ]] || export PATH="$HOME/.local/bin:$PATH"
+
 ### java
 # export JDK_HOME=/usr/lib/jvm/default-java
 # export JAVA_HOME=$JDK_HOME
