@@ -142,7 +142,6 @@ fi
 # Preferences
 export BROWSER=browser-work
 export EDITOR=nvim
-export SHELL=zsh
 export TERMINAL=alacritty
 
 # https://wiki.archlinux.org/title/Wayland#GUI_libraries
