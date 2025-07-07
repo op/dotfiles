@@ -70,6 +70,9 @@ truncation_length = 8
 truncate_to_repo = false
 style = "pine"
 
+[gcloud]
+detect_env_vars = ["never_trigger_gcloud_for_now"]
+
 [git_branch]
 format = "([$symbol($branch)]($style) )"
 symbol = '[±](foam)'
