@@ -1,12 +1,12 @@
 return {
   -- tweak snacks.nvim
-  {
-    "folke/snacks.nvim",
-    opts = {
-      -- disable indent guide -- too slow
-      indent = { enabled = false },
-    },
-  },
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     -- disable indent guide -- too slow
+  --     indent = { enabled = false },
+  --   },
+  -- },
 
   -- statusline
   {
@@ -14,7 +14,7 @@ return {
     opts = function()
       return {
         options = {
-          theme = "catppuccin",
+          -- theme = "catppuccin",
           component_separators = "",
           section_separators = "",
           -- icons_enabled = false,
@@ -43,18 +43,5 @@ return {
         },
       }
     end,
-  },
-
-  -- link to github etc
-  {
-    "9seconds/repolink.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    cmd = "RepoLink",
-    opts = {},
-    keys = {
-      { "<leader>gy", "<cmd>RepoLink!<cr>", mode = { "n", "v" }, desc = "Yank git link" },
-    },
   },
 }
