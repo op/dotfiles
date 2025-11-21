@@ -1,23 +1,13 @@
 return {
-  -- tweak snacks.nvim
-  -- {
-  --   "folke/snacks.nvim",
-  --   opts = {
-  --     -- disable indent guide -- too slow
-  --     indent = { enabled = false },
-  --   },
-  -- },
-
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
     opts = function()
       return {
         options = {
-          -- theme = "catppuccin",
+          theme = "catppuccin",
           component_separators = "",
           section_separators = "",
-          -- icons_enabled = false,
         },
         sections = {
           -- disable git branch
@@ -25,7 +15,6 @@ return {
           -- show relative path
           lualine_c = {
             { "filename", path = 1 },
-            --{ "filetype" },
           },
           -- disable encoding, fileformat and filetype
           lualine_x = {

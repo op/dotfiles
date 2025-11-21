@@ -126,6 +126,8 @@ end
 --
 -- vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+-- disable automatic insertion of pairs like parenthesis etc
+vim.g.minipairs_disable = true
 
 -- Use telescope instead of fzf since it has venv-selector
 -- https://github.com/LazyVim/LazyVim/issues/4113

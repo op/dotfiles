@@ -1,66 +1,12 @@
 return {
   -- language server configurations
-  -- https://github.com/LazyVim/LazyVim/issues/6039
-  -- { "mason-org/mason.nvim", version = "^1.0.0" },
-  -- { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
-
-  {
-    "neovim/nvim-lspconfig",
-
-    opts = {
-      servers = {
-        bashls = {},
-        clangd = {
-          filetypes = { "c", "cpp", "cuda", "hpp" },
-        },
-        -- use clangd instead
-        -- https://github.com/MaskRay/ccls/issues/951
-        -- ccls = {
-        --   init_options = {
-        --     compilationDatabaseDirectory = "build",
-        --     index = { threads = 2 },
-        --   },
-        -- },
-        dockerls = {},
-        gopls = {
-          cmd = {
-            "gopls",
-            -- "-rpc.trace",
-            -- "-remote=auto",
-            -- "-debug=localhost:6060",
-          },
-          -- settings = {
-          --   gopls = {
-          --     analyses = {
-          --       fieldalignment = true,
-          --       unusedparams = true,
-          --     },
-          --     staticcheck = false,
-          --   },
-          -- },
-          graphql = {},
-          jsonls = {},
-          jsonnet_ls = {},
-          lua_ls = {},
-          pyright = {},
-          terraformls = {},
-          tflint = {},
-          tsserver = {},
-          yamlls = {
-            settings = {
-              yaml = {
-                keyOrdering = false,
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-
   {
     "mrcjkb/rustaceanvim",
     opts = {
+      dap = {
+        -- https://github.com/mrcjkb/rustaceanvim/issues/880
+        autoload_configurations = false,
+      },
       server = {
         default_settings = {
           -- rust-analyzer configuration
@@ -80,15 +26,23 @@ return {
                 ["MOLD_JOBS"] = "1",
               },
             },
+            check = {
+              -- TODO: does this actually work?
+              extraEnv = {
+                ["MOLD_JOBS"] = "1",
+              },
+            },
+            -- https://rust-analyzer.github.io/book/editor_features.html#setting-runnable-environment-variables
+            runnables = {
+              -- TODO: does this actually work?
+              extraEnv = {
+                ["MOLD_JOBS"] = "1",
+              },
+            },
             -- reset all the ignored proc-macros via lazyvim
             -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/rust.lua
             procMacro = {
-              enable = true,
-              ignored = {
-                ["async-trait"] = {},
-                ["napi-derive"] = {},
-                ["async-recursion"] = {},
-              },
+              enable = false,
             },
             rustfmt = {
               extraArgs = { "+nightly" },

@@ -1,3 +1,4 @@
+-- https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -24,10 +25,10 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
     -- import any extras modules here
-    { import = "lazyvim.plugins.extras.editor.dial" },
-    { import = "lazyvim.plugins.extras.editor.refactoring" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.lang.clangd" },
+    -- -- { import = "lazyvim.plugins.extras.editor.dial" },
+    -- -- { import = "lazyvim.plugins.extras.editor.refactoring" },
+    -- -- { import = "lazyvim.plugins.extras.dap.core" },
+    -- { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "lazyvim.plugins.extras.lang.git" },
     { import = "lazyvim.plugins.extras.lang.go" },
@@ -35,10 +36,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.terraform" },
-    { import = "lazyvim.plugins.extras.lsp.none-ls" },
-    -- { import = "lazyvim.plugins.extras.test.core" },
+    -- { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- { import = "lazyvim.plugins.extras.lang.terraform" },
+    -- -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
+    -- -- { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.util.dot" },
 
     -- import/override with your plugins
