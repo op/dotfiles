@@ -32,6 +32,9 @@ return {
                 ["MOLD_JOBS"] = "1",
               },
             },
+            lens = {
+              enable = false, -- disable all lenses
+            },
             -- https://rust-analyzer.github.io/book/editor_features.html#setting-runnable-environment-variables
             runnables = {
               -- TODO: does this actually work?
