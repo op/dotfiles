@@ -42,11 +42,6 @@ return {
                 ["MOLD_JOBS"] = "1",
               },
             },
-            -- reset all the ignored proc-macros via lazyvim
-            -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/rust.lua
-            procMacro = {
-              enable = false,
-            },
             rustfmt = {
               extraArgs = { "+nightly" },
             },
