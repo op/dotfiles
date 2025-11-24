@@ -25,6 +25,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
     -- import any extras modules here
+    { import = "lazyvim.plugins.extras.ai.claudecode" },
     -- -- { import = "lazyvim.plugins.extras.editor.dial" },
     -- -- { import = "lazyvim.plugins.extras.editor.refactoring" },
     -- -- { import = "lazyvim.plugins.extras.dap.core" },
