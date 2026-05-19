@@ -3,7 +3,7 @@
 # continue if we're in modal context and ec2
 instance_id=$(cat /sys/devices/virtual/dmi/id/board_asset_tag)
 if [[ ! -d ~/modal || ! "$instance_id" =~ [^i-] ]]; then
-	return 0 2>/dev/null
+  return 0 2>/dev/null
 fi
 
 # cargo  is required by starship
@@ -17,3 +17,6 @@ alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 
 # starship
 eval "$(starship init bash)"
+
+which eza >/dev/null && alias lz=eza
+which bat >/dev/null && alias cat=bat
