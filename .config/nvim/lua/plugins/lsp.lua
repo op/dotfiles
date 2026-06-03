@@ -70,9 +70,6 @@ return {
             numThreads = 4,
 
             cargo = {
-              -- run only for used target
-              -- allTargets = false,
-
               -- keep separate target directory to not block cargo
               -- https://github.com/rust-lang/rust-analyzer/issues/4616
               -- https://github.com/rust-lang/rust-analyzer/issues/6007
