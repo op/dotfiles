@@ -94,6 +94,11 @@ return {
             lru = {
               capacity = 64,
             },
+            -- Skip the eager full-workspace warm-up on startup; biggest single
+            -- contributor to peak RSS during initial indexing on big repos.
+            cachePriming = {
+              enable = false,
+            },
             lens = {
               enable = false,
             },
