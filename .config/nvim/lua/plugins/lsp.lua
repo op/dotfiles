@@ -23,6 +23,16 @@ local function rust_workspace_root(start)
 end
 
 return {
+  -- Disable the gopls semanticTokens workaround from the LazyVim go extra.
+  -- The stable-release (15.13.0) version indexes
+  -- client.config.capabilities.textDocument unguarded, which is nil under
+  -- nvim 0.11's vim.lsp.config and errors on every gopls attach. Fixed
+  -- upstream (LazyVim#7172) but not yet in a stable release — delete this
+  -- override once it ships. Costs gopls semantic-token highlighting until then.
+  {
+    "neovim/nvim-lspconfig",
+    opts = { setup = { gopls = function() end } },
+  },
   -- language server configurations
   {
     "mrcjkb/rustaceanvim",
