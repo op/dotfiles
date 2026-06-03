@@ -1,3 +1,27 @@
+-- Walk up from `start` to find the topmost directory containing a Cargo.toml
+-- with a [workspace] table. Pins rust-analyzer to a single workspace root so
+-- opening files from sub-crates (or workspace-excluded crates) does not spawn
+-- a second rust-analyzer.
+local function rust_workspace_root(start)
+  local found
+  local dir = vim.fs.dirname(start)
+  while dir and dir ~= "/" do
+    local cargo = dir .. "/Cargo.toml"
+    if vim.uv.fs_stat(cargo) then
+      local fd = io.open(cargo, "r")
+      if fd then
+        local content = fd:read("*a")
+        fd:close()
+        if content:match("%[workspace%]") then
+          found = dir
+        end
+      end
+    end
+    dir = vim.fs.dirname(dir)
+  end
+  return found
+end
+
 return {
   -- language server configurations
   {
@@ -8,6 +32,9 @@ return {
         autoload_configurations = false,
       },
       server = {
+        root_dir = function(filename, default)
+          return rust_workspace_root(filename) or default(filename)
+        end,
         default_settings = {
           -- rust-analyzer configuration
           -- https://rust-analyzer.github.io/book/configuration.html
