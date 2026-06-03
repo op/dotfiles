@@ -83,10 +83,8 @@ return {
               },
             },
             check = {
-              -- Cap the number of parallel rustc invocations during background
-              -- checks — the main source of the many rustc processes at the top
-              -- of `top`. 2 is enough to keep feedback fast without flooding RAM.
-              numThreads = 2,
+              -- Cap the parallel rustc invocations during background checks.
+              extraArgs = { "--jobs", "2" },
               extraEnv = {
                 ["MOLD_JOBS"] = "1",
               },
