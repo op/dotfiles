@@ -45,6 +45,21 @@ return {
         root_dir = function(filename, default)
           return rust_workspace_root(filename) or default(filename)
         end,
+        -- Run rust-analyzer in its own systemd scope with a hard memory cap
+        -- and swap disabled for it. If it blows past the cap the kernel
+        -- OOM-kills rust-analyzer alone instead of swapping the whole
+        -- machine to death.
+        cmd = {
+          "systemd-run",
+          "--user",
+          "--scope",
+          "--quiet",
+          "-p",
+          "MemoryMax=10G",
+          "-p",
+          "MemorySwapMax=0",
+          "rust-analyzer",
+        },
         default_settings = {
           -- rust-analyzer configuration
           -- https://rust-analyzer.github.io/book/configuration.html
