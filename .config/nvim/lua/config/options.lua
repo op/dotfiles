@@ -110,6 +110,7 @@ vim.opt.relativenumber = false
 -- disable some bells and whistles
 vim.g.snacks_animate = false
 vim.g.smoothscroll = false
+vim.opt.belloff = ""
 
 -- Follow color scheme from GNOME
 local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
