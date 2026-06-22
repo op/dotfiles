@@ -75,15 +75,21 @@ return {
               -- https://github.com/rust-lang/rust-analyzer/issues/6007
               targetDir = true,
 
+              -- disable extra build scripts that seem to trigger OOM due to cc1 duckdb
+              buildScripts = { enable = false },
+
               extraEnv = {
                 ["MOLD_JOBS"] = "1",
+                ["CARGO_BUILD_JOBS"] = "1", -- parallel rustc jobs
+                ["NUM_JOBS"] = "1", -- parallel cc1 jobs within each build script
               },
             },
             check = {
               -- Cap the parallel rustc invocations during background checks.
-              extraArgs = { "--jobs", "2" },
+              extraArgs = { "--jobs", "1" },
               extraEnv = {
                 ["MOLD_JOBS"] = "1",
+                ["CARGO_BUILD_JOBS"] = "1", -- parallel rustc jobs
               },
             },
             -- Reduce the syntax-tree LRU cache. Default is unbounded; 64 trades
@@ -97,7 +103,10 @@ return {
               enable = false,
             },
             lens = {
-              enable = false,
+              enable = false, -- disable all lenses
+            },
+            procMacro = {
+              enable = true,
             },
             -- https://rust-analyzer.github.io/book/editor_features.html#setting-runnable-environment-variables
             runnables = {
