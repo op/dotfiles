@@ -58,6 +58,8 @@ require("lazy").setup({
   },
   install = { colorscheme = { "catppuccin-nvim" } },
   checker = { enabled = false }, -- automatically check for plugin updates
+  -- don't pop up a dialog every time a config file changes on disk
+  change_detection = { notify = false },
 
   performance = {
     rtp = {
