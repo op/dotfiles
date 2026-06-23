@@ -126,6 +126,10 @@ end
 --
 -- vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+-- Root detection: prefer the git root over the LSP root. The default puts
+-- "lsp" first, so when pyright/ruff attach they scope the root to the nearest
+-- pyproject.toml, making <leader>/ grep only that (python) subtree.
+vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
 -- disable automatic insertion of pairs like parenthesis etc
 vim.g.minipairs_disable = true
 
