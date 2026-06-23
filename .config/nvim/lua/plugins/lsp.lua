@@ -75,6 +75,10 @@ return {
               -- https://github.com/rust-lang/rust-analyzer/issues/6007
               targetDir = true,
 
+              -- use default to not build all examples etc. Mostly to keep memory
+              -- down. This has some big drawbacks.
+              features = "default",
+
               -- disable extra build scripts that seem to trigger OOM due to cc1 duckdb
               buildScripts = { enable = false },
 
