@@ -79,6 +79,10 @@ return {
               -- down. This has some big drawbacks.
               features = "default",
 
+              -- Skipping tests, benches and examples targets cuts memory
+              -- significantly.
+              allTargets = false,
+
               -- Disable extra build scripts that seem to trigger OOM due to cc1 duckdb
               buildScripts = { enable = false },
 
