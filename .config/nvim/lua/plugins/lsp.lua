@@ -113,6 +113,9 @@ return {
             lens = {
               enable = false, -- disable all lenses
             },
+            -- Prevents cargo test discovery runs, which link full binaries and
+            -- spike memory.
+            testExplorer = false,
             procMacro = {
               enable = true,
             },
