@@ -120,6 +120,9 @@ return {
             testExplorer = false,
             procMacro = {
               enable = true,
+
+              -- Increase performance by running many proc-macro-srv instances.
+              processes = 8,
             },
             -- https://rust-analyzer.github.io/book/editor_features.html#setting-runnable-environment-variables
             runnables = {
