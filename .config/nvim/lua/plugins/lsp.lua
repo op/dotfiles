@@ -99,6 +99,8 @@ return {
                 ["MOLD_JOBS"] = "1",
                 ["CARGO_BUILD_JOBS"] = "1", -- parallel rustc jobs
               },
+              -- Disable check of full workspace on package change.
+              workspace = false,
             },
             -- Reduce the syntax-tree LRU cache. Default is unbounded; 64 trades
             -- a bit of re-parse speed for significantly lower RSS per instance.
