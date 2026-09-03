@@ -39,7 +39,10 @@ if vim.env.SSH_TTY then
   local function paste()
     return {
       vim.fn.split(vim.fn.getreg(""), "\n"),
-      vim.fn.getregtype(""),
+      -- The clipboard provider only accepts a single-character regtype, but
+      -- getregtype() may return e.g. "\02230" (blockwise + width). Truncate
+      -- or getreg('+') fails with "clipboard: provider returned invalid data".
+      vim.fn.getregtype(""):sub(1, 1),
     }
   end
   vim.g.clipboard = {
