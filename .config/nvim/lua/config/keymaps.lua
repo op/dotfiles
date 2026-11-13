@@ -20,7 +20,6 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
 -- Misc
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "n", "s" }, "<esc>", "<cmd>nohlsearch<cr><esc>", { desc = "Escape and Clear hlsearch" })
 map("x", "<", "<gv")
 map("x", ">", ">gv")
