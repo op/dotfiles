@@ -98,6 +98,7 @@ require("gitsigns").setup({
 -- fzf-lua
 --
 require("fzf-lua").setup({
+  fzf_colors = true, -- derive fzf's colors from the nvim colorscheme
   defaults = { file_icons = false, git_icons = false },
   files = { cmd = "fd --type f --hidden --follow --exclude .git" },
   grep = { rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob=!.git/" },
