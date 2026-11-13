@@ -19,7 +19,35 @@ vim.pack.add({
   gh("lewis6991/gitsigns.nvim"), -- git hunks/signs (author is a nvim core maintainer)
   gh("ibhagwan/fzf-lua"), -- fuzzy picker; uses fzf, fd, rg from nix
   gh("coder/claudecode.nvim"), -- only started on demand, see below
+  gh("folke/which-key.nvim"), -- popup of pending keymaps
 })
+
+--
+-- which-key: shows the mappings that can follow a prefix (from their `desc`).
+--
+local wk = require("which-key")
+wk.setup({
+  preset = "helix",
+  delay = 300, -- ms before the popup; it waits for the next key without a timeout
+  icons = { mappings = false }, -- no icon plugin
+})
+wk.add({
+  { "<leader>a", group = "ai (Claude)" },
+  { "<leader>b", group = "buffer" },
+  { "<leader>c", group = "code" },
+  { "<leader>f", group = "file/find" },
+  { "<leader>g", group = "git" },
+  { "<leader>gh", group = "hunks" },
+  { "<leader>q", group = "quit" },
+  { "<leader>s", group = "search" },
+  { "<leader>u", group = "ui toggles" },
+  { "[", group = "prev" },
+  { "]", group = "next" },
+  { "g", group = "goto" },
+})
+vim.keymap.set("n", "<leader>?", function()
+  wk.show({ global = false })
+end, { desc = "Buffer Keymaps (which-key)" })
 
 --
 -- gitsigns
