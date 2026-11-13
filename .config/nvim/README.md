@@ -24,8 +24,12 @@ Nix provides a base version of each tool. Where the version affects output
   `~/src`, `~/.config`). Language servers run project code (proc macros, build
   scripts, venv interpreters), so other checkouts get plain editing only.
   `:Trust [dir]` trusts a directory for the current session.
-* No project-local config is read: `exrc` is off, no neoconf, nothing reads
-  `.vscode/settings.json`.
+* No project-local config is executed: `exrc` is off, no neoconf.
+  `.vscode/settings.json` is only read after you trust it (`vim.secure`,
+  re-prompted whenever the file changes; see `:trust`), and then only
+  allowlisted rust-analyzer / `python.analysis` keys are applied. Anything
+  naming a command, env var, wrapper or binary is dropped
+  (`lua/config/vscode.lua`); applied and ignored keys are reported.
 * Modelines are disabled. netrw, zip/tar and the remote-plugin providers are off.
 * Sensitive files (`.env`, keys, `~/.ssh`, `~/.aws`, `/dev/shm`, `/tmp`, ...)
   get no swap, undo, backup or shada, and the clipboard is disconnected while

@@ -1,10 +1,11 @@
 -- rust-analyzer via the rustup proxy (~/.cargo/bin), so the version follows
--- the project's rust-toolchain.toml. Replaces rustaceanvim; notably no
--- .vscode/settings.json is ever read from the project.
+-- the project's rust-toolchain.toml. Replaces rustaceanvim. Allowlisted keys of
+-- the project's .vscode/settings.json are applied (lua/config/vscode.lua).
 --
 -- Note: proc macros run project code. That is acceptable here only because
 -- servers are limited to trusted roots (lua/config/trust.lua).
 local trust = require("config.trust")
+local vscode = require("config.vscode")
 
 -- Walk up from `start` to find the topmost directory containing a Cargo.toml
 -- with a [workspace] table. Pins rust-analyzer to a single workspace root so
@@ -53,6 +54,7 @@ return {
   end,
   filetypes = { "rust" },
   root_dir = trust.root_dir({ "Cargo.toml", "rust-project.json", ".git" }, rust_workspace_root),
+  before_init = vscode.before_init("rust-analyzer"),
   capabilities = {
     experimental = { serverStatusNotification = true },
   },

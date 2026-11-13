@@ -1,6 +1,7 @@
 -- pyright from nix. Uses the project's .venv interpreter when present
 -- (replaces venv-selector.nvim).
 local trust = require("config.trust")
+local vscode = require("config.vscode")
 
 ---@type vim.lsp.Config
 return {
@@ -24,7 +25,8 @@ return {
       },
     },
   },
-  before_init = function(_, config)
+  before_init = function(params, config)
+    vscode.before_init("python")(params, config)
     local root = config.root_dir
     for _, dir in ipairs({ root, vim.fs.root(root, { ".git" }) }) do
       local python = dir and dir .. "/.venv/bin/python"
