@@ -4,9 +4,6 @@
 -- LSP:       vim.lsp.config/enable with configs in lsp/*.lua; servers from nix
 -- Grammars:  tree-sitter parsers + queries from nix (share/nvim/site)
 
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
-
 require("config.security") -- first: hardening must apply before anything loads files
 require("config.options")
 require("config.plugins")
