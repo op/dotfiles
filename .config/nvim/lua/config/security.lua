@@ -8,9 +8,14 @@ vim.o.modelineexpr = false
 vim.o.exrc = false -- never source .nvim.lua / .exrc from the cwd
 vim.o.secure = true
 
+-- netrw: keep local browsing (:Ex, `nvim <dir>`), drop its network side.
+-- The "Network" augroup is what reads/writes/sources scp://, ftp://,
+-- http://, dav://, rsync://, sftp:// and file:// URLs.
+vim.g.netrw_dirhistmax = 0 -- no .netrwhist of browsed directories
+vim.cmd.packadd("netrw") -- load now (instead of from plugin/) so the group exists
+pcall(vim.api.nvim_del_augroup_by_name, "Network")
+
 -- Builtin plugins that fetch remote content or unpack archives.
-vim.g.loaded_netrw = 1 -- also handles scp://, http:// etc.
-vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_tarPlugin = 1
