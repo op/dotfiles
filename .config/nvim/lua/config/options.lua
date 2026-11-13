@@ -1,24 +1,33 @@
--- Default options that are always set:
--- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
-
 --
 -- General
 --
-vim.opt.confirm = false -- Revert back to vim default
+vim.opt.confirm = false
 vim.opt.fixendofline = false -- Stop adding endlines
 vim.opt.mouse = "" -- Disable mouse
-vim.opt.scrolloff = 2 -- Show lines above and below cursor
+vim.opt.scrolloff = 2
+vim.opt.sidescrolloff = 2
+vim.opt.sidescroll = 1
 vim.opt.selectmode = "mouse,key"
-vim.opt.sidescrolloff = 2 -- Show columns left and right of cursor
-vim.opt.sidescroll = 1 -- Scroll whole page horizontally
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 50
+vim.opt.timeoutlen = 300
+vim.opt.updatetime = 200
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitkeep = "screen"
+vim.opt.virtualedit = "block"
+vim.opt.jumpoptions = "view"
+vim.opt.inccommand = "nosplit"
+vim.opt.signcolumn = "yes"
+vim.opt.wrap = false
+vim.opt.showmode = false
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 
 -- Clipboard in SSH session.
 --
 -- If OSC 52 is used as a fallback, copy will still not work unless we set a
--- clipboard.
-vim.opt.clipboard = "unnamedplus" -- Clipboard for all interactions
+-- clipboard. (Disabled while a sensitive file is current, see security.lua.)
+vim.opt.clipboard = "unnamedplus"
 --
 -- Since we now have set clipboard, Neovim will not make use of OSC 52. Hence
 -- we need to explicitly set g.clipboard.
@@ -35,7 +44,6 @@ vim.opt.clipboard = "unnamedplus" -- Clipboard for all interactions
 -- * https://github.com/neovim/neovim/issues/29504
 -- * https://github.com/neovim/neovim/discussions/28010
 if vim.env.SSH_TTY then
-  -- Set paste to behave like normal paste
   local function paste()
     return {
       vim.fn.split(vim.fn.getreg(""), "\n"),
@@ -45,98 +53,77 @@ if vim.env.SSH_TTY then
       vim.fn.getregtype(""):sub(1, 1),
     }
   end
+  local osc52 = require("vim.ui.clipboard.osc52")
   vim.g.clipboard = {
     name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = paste,
-      ["*"] = paste,
-    },
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
   }
 end
 
 --
--- File handling
+-- File handling (backupdir and shada are set in security.lua)
 --
 vim.opt.backup = true
-vim.opt.backupdir = { vim.fn.expand("~/.local/state/nvim/backup/") }
 vim.opt.undofile = true
 vim.opt.undolevels = 10240
---vim.go.netrw_dirhistmax = 0
 vim.opt.fileencodings = "utf-8,default,latin1"
 
 --
 -- Indentation and formatting
 --
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftround = true
+vim.opt.smartindent = true
 vim.opt.copyindent = true
 vim.opt.preserveindent = true
 vim.opt.breakindent = true
-
+vim.opt.linebreak = true
 vim.opt.joinspaces = false
-
-vim.opt.softtabstop = 2
-vim.opt.linebreak = true -- Soft wrap lines
-vim.opt.breakindent = true -- Visually indent lines that breaks
+vim.opt.formatoptions = "jcroqlnt"
 vim.opt.cinoptions = ":0,g0,p2s,t0,+1s,(0"
 
----
---- Searching
----
+--
+-- Searching
+--
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
 vim.opt.path:append("**")
 vim.opt.wildignore:append("*/tags,*/tmp/*,/var/*,*.a,*.o,*.obj,*.so,*.swp,*.zip,*.tar,*.pyc")
 vim.opt.wildmode = "list:longest,full"
-vim.opt.hlsearch = true
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m"
 
 --
--- Completion
+-- Completion (LSP autotrigger is enabled per buffer in lsp.lua)
 --
-vim.opt.completeopt = "menu,menuone,noinsert,noselect"
+vim.opt.completeopt = "menu,menuone,noinsert,noselect,fuzzy,popup"
+vim.opt.pumheight = 10
 
--- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer for diagnostics.
--- The rest of LSP support will still be provided by rust-analyzer.
--- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
+--
+-- Folding (treesitter foldexpr is set per buffer in treesitter.lua)
+--
+vim.opt.foldlevel = 99
+vim.opt.foldtext = ""
 
 --
 -- Appearance
 --
 vim.opt.cmdheight = 0
-vim.opt.laststatus = 0
+vim.opt.laststatus = 0 -- set to 3 to show the statusline from statusline.lua
 vim.opt.list = false
 vim.opt.listchars = { eol = "↵", tab = "→ ", trail = "·" }
 vim.opt.colorcolumn = "80"
 vim.opt.number = false
 vim.opt.relativenumber = false
-
--- disable some bells and whistles
-vim.g.snacks_animate = false
-vim.g.smoothscroll = false
 vim.opt.belloff = ""
 
--- Follow color scheme from GNOME
-local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
-if string.find(color_scheme, "dark") then
-  vim.o.background = "dark"
-elseif vim.fn.filereadable(vim.fn.expand("~/.darkmode")) == 1 then
-  vim.o.background = "dark"
-else
-  vim.o.background = "light"
-end
-
---
--- LazyVim
---
--- vim.g.lazyvim_python_lsp = "basedpyright"
-vim.g.lazyvim_python_ruff = "ruff"
--- Root detection: prefer the git root over the LSP root. The default puts
--- "lsp" first, so when pyright/ruff attach they scope the root to the nearest
--- pyproject.toml, making <leader>/ grep only that (python) subtree.
-vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
--- disable automatic insertion of pairs like parenthesis etc
-vim.g.minipairs_disable = true
-
--- Use telescope instead of fzf since it has venv-selector
--- https://github.com/LazyVim/LazyVim/issues/4113
--- vim.g.lazyvim_picker = "telescope"
+-- Dark mode follows ~/.darkmode (toggled by ~/bin/darkmode). No external
+-- command is run at startup.
+vim.o.background = vim.uv.fs_stat(vim.fn.expand("~/.darkmode")) and "dark" or "light"
+-- Builtin since nvim 0.12 (Latte for light, Mocha for dark): no plugin needed.
+vim.cmd.colorscheme("catppuccin")

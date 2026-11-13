@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "claudecode.nvim": {
+      "rev": "bcf1f0846ae0fd1b034210991fcd7af68745e4ed",
+      "src": "https://github.com/coder/claudecode.nvim"
+    },
+    "fzf-lua": {
+      "rev": "ded1c96d3d9d74634287d722431c26690968a4bf",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "gitsigns.nvim": {
+      "rev": "ef707fb93301a9b856f36eae4c8f56f5b988a794",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    }
+  }
+}
