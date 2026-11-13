@@ -100,19 +100,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- nvim already maps: K, grn (rename), gra (code action), grr (references),
     -- gri (implementation), grt (type definition), gO (symbols), ]d/[d,
-    -- <C-s> (signature help, insert). The LazyVim-style aliases:
+    -- <C-s> (signature help, insert). Extra mappings:
     local function map(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc })
     end
     local fzf = require("fzf-lua")
     map("n", "gd", fzf.lsp_definitions, "Goto Definition")
     map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-    map("n", "gr", fzf.lsp_references, "References")
-    map("n", "gI", fzf.lsp_implementations, "Goto Implementation")
-    map("n", "gy", fzf.lsp_typedefs, "Goto Type Definition")
     map("n", "gK", vim.lsp.buf.signature_help, "Signature Help")
-    map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-    map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
     map("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", "Lsp Info")
     map("n", "<leader>ch", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }), { bufnr = buf })
