@@ -121,6 +121,10 @@ vim.opt.number = false
 vim.opt.relativenumber = false
 vim.opt.belloff = ""
 
+-- 24-bit color: auto-detection misses it over SSH (TERM=alacritty, no
+-- COLORTERM), and fzf-lua derives its colors from these values.
+vim.o.termguicolors = true
+
 -- Dark mode follows ~/.darkmode (toggled by ~/bin/darkmode). No external
 -- command is run at startup.
 vim.o.background = vim.uv.fs_stat(vim.fn.expand("~/.darkmode")) and "dark" or "light"
