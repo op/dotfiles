@@ -10,7 +10,6 @@ vim.opt.sidescroll = 1
 vim.opt.selectmode = "mouse,key"
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 50
-vim.opt.timeoutlen = 1000 -- time to finish a mapping like <leader>ghs (no which-key)
 vim.opt.updatetime = 200
 vim.opt.splitright = true
 vim.opt.splitbelow = true
