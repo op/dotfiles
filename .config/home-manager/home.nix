@@ -11,7 +11,7 @@
 
   home.packages = with pkgs; [
     # dotfiles bootstrap (`mr checkout` fetches zplug and themes)
-    myrepos
+    mr # myrepos
     git
 
     # shell
