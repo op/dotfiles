@@ -6,17 +6,19 @@ if [[ ! -d ~/modal || ! "$instance_id" =~ [^i-] ]]; then
   return 0 2>/dev/null
 fi
 
-# cargo  is required by starship
-[[ ! -s "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"
+# nix; the installer hooks /etc/bash.bashrc, this covers shells that skip it
+if [[ -z "${NIX_PROFILES:-}" && -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
 
-# bob
-export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+# rust toolchain for the modal repo (rustup)
+[[ ! -s "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"
 
 # dotfiles
 alias dot='git --work-tree $HOME --git-dir $HOME/.dotgit'
 
 # starship
-eval "$(starship init bash)"
+command -v starship >/dev/null && eval "$(starship init bash)"
 
 which eza >/dev/null && alias lz=eza
 which bat >/dev/null && alias cat=bat

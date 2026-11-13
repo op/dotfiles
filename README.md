@@ -17,10 +17,13 @@ dot checkout
 # do not show untracked files
 dot config --local status.showUntrackedFiles no
 
-# this gets zplug
-apt install myrepos
-mr checkout
+# install nix + packages (home-manager), then `mr checkout` (zplug etc)
+~/.dotfiles/bootstrap.sh
 ```
+
+Packages live in [`~/.config/home-manager/home.nix`](.config/home-manager/home.nix);
+after editing, apply with `home-manager switch`. Update pinned versions with
+`nix flake update --flake ~/.config/home-manager`.
 
 ### xdg directories
 
