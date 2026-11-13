@@ -17,18 +17,6 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
--- Terminal: window commands work like in Vim's terminal ('termwinkey').
--- <C-w>h/j/k/l/w/... leaves terminal mode and runs the window command;
--- <C-w>. sends a literal CTRL-W to the program (e.g. delete word in a shell).
-map("t", "<C-w>", "<C-\\><C-n><C-w>", { desc = "Window command" })
-map("t", "<C-w>.", "<C-w>", { desc = "Send CTRL-W" })
--- Entering a terminal window resumes terminal mode, like Vim.
-vim.api.nvim_create_autocmd({ "BufEnter", "TermOpen" }, {
-  group = vim.api.nvim_create_augroup("user_terminal", { clear = true }),
-  pattern = "term://*",
-  command = "startinsert",
-})
-
 -- Misc
 map({ "i", "n", "s" }, "<esc>", "<cmd>nohlsearch<cr><esc>", { desc = "Escape and Clear hlsearch" })
 map("x", "<", "<gv")
