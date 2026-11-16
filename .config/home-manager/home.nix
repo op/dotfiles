@@ -1,7 +1,7 @@
 # Packages only: the config files themselves are tracked in the dotfiles git
 # repo (~/.dotgit), so no programs.* modules are enabled here; they would try
 # to write the same files.
-{ pkgs, username, ... }:
+{ pkgs, username, dolly, ... }:
 let
   # Tree-sitter grammars + queries for neovim, built by nix (hash-pinned via
   # flake.lock) instead of nvim-treesitter downloading and compiling them at
@@ -41,6 +41,18 @@ let
       mkdir -p $site/parser $site/queries
       ${pkgs.lib.concatMapStrings link treesitterLanguages}
     '';
+  # `git dolly <url>` clones into ~/src/<host>/<path> (override with DOLLY_PATH)
+  dolly-bin = pkgs.stdenvNoCC.mkDerivation {
+    pname = "dolly";
+    version = dolly.shortRev or "unstable";
+    src = dolly;
+    buildInputs = [ pkgs.python3 ]; # patchShebangs picks this python
+    dontBuild = true;
+    installPhase = ''
+      install -Dm755 dolly $out/bin/dolly
+      ln -s dolly $out/bin/git-dolly
+    '';
+  };
 in
 {
   home.username = username;
@@ -93,5 +105,6 @@ in
     ripgrep
     colordiff
     jq
+    dolly-bin
   ];
 }

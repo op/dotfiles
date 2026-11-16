@@ -7,17 +7,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # single python script, packaged in home.nix
+    dolly = {
+      url = "github:op/dolly";
+      flake = false;
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    { nixpkgs, home-manager, dolly, ... }:
     let
       mkHome =
         system: username:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [ ./home.nix ];
-          extraSpecialArgs = { inherit username; };
+          extraSpecialArgs = { inherit username dolly; };
         };
     in
     {
