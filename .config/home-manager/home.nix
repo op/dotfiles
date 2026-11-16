@@ -94,6 +94,8 @@ in
     taplo # toml
     stylua
 
+    mold # linker
+
     lazygit # nvim <leader>gg
     glow # nvim :Glow
 

@@ -1,21 +1,14 @@
 [env]
-# Minimise peak memory usage by only running one instance. See mold(1).
+# One mold instance at a time to cap peak memory, see mold(1).
 MOLD_JOBS = "1"
 
-# Use mold instead of ld. It is both faster, allow us to limit the number
-# of linkers run in parallel, and is in itself concurrent.
-#
-# ld has been observed to take roughly 3gb of rss. Making mold only launch one
-# instance with the use of MOLD_JOBS, we can workaround a limitation with the
-# rust toolchain.
+# mold: faster than ld, which can hit ~3GB RSS per link.
 # https://github.com/rust-lang/cargo/issues/12912
-#
-# clang is used because we sometime use an older GCC version.
-[target.x86_64-unknown-linux-gnu]
-linker = "clang"
+# Requires mold on PATH (home-manager); GCC 12+ handles -fuse-ld=mold.
+[target.'cfg(target_os = "linux")']
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
-# A profiling profile to always make it possible to profile release builds.
+# Release build with debug info, for profiling.
 [profile.profiling]
 inherits = "release"
 debug = true
