@@ -72,6 +72,7 @@ in
     # dotfiles bootstrap (`mr checkout` fetches zplug and themes)
     mr # myrepos
     git
+    git-lfs # ~/.config/git/hooks/pre-push
 
     # shell
     zsh
