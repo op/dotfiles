@@ -14,6 +14,9 @@ set -euo pipefail
 NIX_VERSION=2.35.6
 NIX_INSTALL_SHA256=6f7bf206efb54cd4941fb274930dbc74fdfc16fcb06757ef261c8d7d69cfd60e
 
+# provisioned ~/.gitconfig would override ~/.config/git/config
+mv "$HOME/.gitconfig" "$HOME/.gitconfig.$(date +%Y%m%d%H%M%S)" 2>/dev/null || true
+
 if [ ! -d /nix ]; then
 	tmp=$(mktemp -d)
 	trap 'rm -rf "$tmp"' EXIT
