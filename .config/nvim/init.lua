@@ -11,6 +11,7 @@ vim.g.mapleader = " "
 require("config.security") -- first: hardening must apply before anything loads files
 require("config.options")
 require("config.plugins")
+require("config.filetypes")
 require("config.treesitter")
 require("config.lsp")
 require("config.statusline")

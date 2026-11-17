@@ -19,7 +19,9 @@ let
     "go"
     "gomod"
     "gosum"
+    "gotmpl" # inherited by helm
     "gowork"
+    "helm" # helm chart templates (go templates + yaml)
     "json"
     "make"
     "python"
