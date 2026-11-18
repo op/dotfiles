@@ -110,6 +110,7 @@ in
     ripgrep
     colordiff
     jq
+    pv # pipe progress
     dolly-bin
   ];
 }
