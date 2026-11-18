@@ -96,6 +96,7 @@ vim.opt.wildignore:append("*/tags,*/tmp/*,/var/*,*.a,*.o,*.obj,*.so,*.swp,*.zip,
 vim.opt.wildmode = "list:longest,full"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.tags = "" -- LSP only, no ctags fallback
 
 --
 -- Completion (LSP autotrigger is enabled per buffer in lsp.lua)
