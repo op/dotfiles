@@ -14,6 +14,12 @@ vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("user_treesitter", { clear = true }),
   callback = function(ev)
     if vim.b[ev.buf].bigfile then
+      -- :syntax on's own FileType handler runs after this one; undo it.
+      vim.schedule(function()
+        if vim.api.nvim_buf_is_valid(ev.buf) then
+          vim.bo[ev.buf].syntax = "off"
+        end
+      end)
       return
     end
     local lang = vim.treesitter.language.get_lang(ev.match)
