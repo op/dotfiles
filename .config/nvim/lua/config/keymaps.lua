@@ -78,13 +78,15 @@ map("n", "<leader>gl", fzf.git_commits, { desc = "Git Log" })
 
 -- lazygit in a terminal tab, closed when lazygit exits
 map("n", "<leader>gg", function()
+  local cwd = root()
   vim.cmd.tabnew()
+  local buf = vim.api.nvim_get_current_buf()
   vim.fn.jobstart({ "lazygit" }, {
     term = true,
-    cwd = root(),
+    cwd = cwd,
     on_exit = function()
       vim.schedule(function()
-        pcall(vim.cmd.bdelete, { bang = true })
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
       end)
     end,
   })
