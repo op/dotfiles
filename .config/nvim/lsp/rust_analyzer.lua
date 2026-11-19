@@ -54,7 +54,12 @@ return {
   end,
   filetypes = { "rust" },
   root_dir = trust.root_dir({ "Cargo.toml", "rust-project.json", ".git" }, rust_workspace_root),
-  before_init = vscode.before_init("rust-analyzer"),
+  before_init = function(params, config)
+    vscode.before_init("rust-analyzer")(params, config)
+    -- Startup-only settings (numThreads, lru, cachePriming) are read from
+    -- here, not from workspace/configuration.
+    params.initializationOptions = config.settings["rust-analyzer"]
+  end,
   capabilities = {
     experimental = { serverStatusNotification = true },
   },
