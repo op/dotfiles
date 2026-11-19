@@ -43,8 +43,15 @@ local formatters = {
 }
 
 local function organize_imports(client, buf)
-  local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
-  params.context = { only = { "source.organizeImports" }, diagnostics = {} }
+  -- Whole-buffer range built from `buf`: with :wa it need not be current.
+  local params = {
+    textDocument = { uri = vim.uri_from_bufnr(buf) },
+    range = {
+      start = { line = 0, character = 0 },
+      ["end"] = { line = vim.api.nvim_buf_line_count(buf), character = 0 },
+    },
+    context = { only = { "source.organizeImports" }, diagnostics = {} },
+  }
   local res = client:request_sync("textDocument/codeAction", params, 1000, buf)
   for _, action in ipairs(res and res.result or {}) do
     if action.edit then
